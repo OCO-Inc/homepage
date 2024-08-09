@@ -23,8 +23,8 @@ window.onload = function() {
       this.blue = blue;
       this.alpha = alpha;
       this.col = col;
-      this.birthTime = birthTime;  // Set birthTime
-      this.dt = dt;                // Set death time
+      this.birthTime = birthTime;
+      this.dt = dt;  
    };
 
    function rand(min, max) {
@@ -47,7 +47,7 @@ window.onload = function() {
    Y = centerY;
 
    function init() {
-      var x, y, vx, vy, r, red, green, blue, alpha, col, bt, dt;
+      var x, y, vx, vy, r, red, green, blue, alpha, col, birthTime, dt;
       
       // Determine how many particles exist
       var existingParticles = P.length;
@@ -67,10 +67,10 @@ window.onload = function() {
          blue = Math.round(255);
          alpha = 1;
          col = "rgba(" + red + "," + green + "," + blue + "," + alpha + ")";
-         bt = Date.now(); // Record the creation time
-         dt = rand(1000, 60000); // Set a random death time between 1s and 60s
+         birthTime = Date.now(); // Record the creation time
+         dt = rand(10000, 180000); // Set a random death time between 1s and 60s
 
-         P.push(new part(x, y, vx, vy, r, red, green, blue, alpha, col, bt, dt));
+         P.push(new part(x, y, vx, vy, r, red, green, blue, alpha, col, birthTime, dt));
       }
    }
 
@@ -105,11 +105,11 @@ window.onload = function() {
          dist = Math.sqrt(dx * dx + dy * dy),
          angle = Math.atan2(dy, dx);
 
-      if (dist > 10 && dist < 300) {
-         if (!mousedown) {
+      if (dist > 3 && dist < 300) {
+         if (mousedown) {
             p.vx -= (20 / (p.r * dist)) * Math.cos(angle);
             p.vy -= (20 / (p.r * dist)) * Math.sin(angle);
-         } else if (mousedown) {
+         } else if (!mousedown) {
             p.vx += (250 / (p.r * dist)) * Math.cos(angle);
             p.vy += (250 / (p.r * dist)) * Math.sin(angle);
          }
@@ -140,8 +140,8 @@ window.onload = function() {
          p.x += p.vx;
          p.y += p.vy;
 
-         p.vx *= .975;
-         p.vy *= .975;
+         p.vx *= .999;
+         p.vy *= .999;
 
          ctx.fillStyle = p.col;
          ctx.fillRect(p.x, p.y, p.r, p.r);
