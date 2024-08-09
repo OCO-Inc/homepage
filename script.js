@@ -47,7 +47,7 @@ window.onload = function() {
    Y = centerY;
 
 function init() {
-    var x, y, vx, vy, r, red, green, blue, alpha, col, bt;
+    var x, y, vx, vy, r, red, green, blue, alpha, col, bt, dt;
     
     // Determine how many particles exist
     var existingParticles = P.length;
@@ -68,8 +68,9 @@ function init() {
         alpha = 1;
         col = "rgba(" + red + "," + green + "," + blue + "," + alpha + ")";
         bt = Date.now(); // Record the creation time
+		dt = rand(1000, 60000)
 
-        P.push(new part(x, y, vx, vy, r, red, green, blue, alpha, col, bt));
+        P.push(new part(x, y, vx, vy, r, red, green, blue, alpha, col, bt, dt));
     }
 }
 
@@ -122,12 +123,11 @@ function init() {
    function draw() {
       var p;
 	  var currentTime = Date.now();
-	  var deathTime = rand(5000, 30000);
       for (var i = 0; i < P.length; i++) {
          p = P[i];
 
          var age = currentTime - p.birthTime;
-		 if (age > deathTime) {
+		 if (age > 10000) {
             P.splice(i, 1);
             continue;
         }
@@ -155,6 +155,48 @@ function init() {
          ctx.stroke();
 
    }
+   
+   function draw() {
+    var p;
+    var currentTime = Date.now();
+
+    // Loop backwards to safely remove particles
+    for (var i = P.length - 1; i >= 0; i--) {
+        p = P[i];
+
+        // Calculate particle's age
+        var age = currentTime - p.birthTime;
+
+        // Check if the particle should be removed based on its death time
+        if (age > p.dt) {
+            P.splice(i, 1);
+            continue;
+        }
+
+        // Existing particle behavior
+        if (mouseover) attract(p);
+        bounce(p);
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        p.vx *= .975;
+        p.vy *= .975;
+
+        ctx.fillStyle = p.col;
+        ctx.fillRect(p.x, p.y, p.r, p.r);
+    }
+
+    ctx.strokeStyle = (!mousedown) ? "rgba(255,255,255,1)" : "rgba(255,0,0,1)";
+
+    ctx.beginPath();
+    ctx.moveTo(X, Y - 10);
+    ctx.lineTo(X, Y + 10);
+    ctx.moveTo(X - 10, Y);
+    ctx.lineTo(X + 10, Y);
+    ctx.stroke();
+}
+
 
    function loop() {
       bg();
