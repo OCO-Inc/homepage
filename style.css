@@ -5,6 +5,8 @@
 
 html {
    overflow: hidden;
+   margin: 0;
+   height: 100%;
 }
 
 canvas {
@@ -12,5 +14,7 @@ canvas {
 }
 
 body {
-  background-color: rgb(5,5,10);
+   background-color: rgb(5,5,10);
+   margin: 0;
+   height: 100%;
 }
