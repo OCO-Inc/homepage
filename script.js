@@ -46,23 +46,32 @@ window.onload = function() {
    X = centerX;
    Y = centerY;
 
-   function init() {
-      var x, y, vx, vy, r, red, green, blue, alpha, col;
-      for (var i = 0; i < part_num; i++) {
-         x = rand(0, canvas.width);
-         y = rand(0, canvas.height);
-         vx = rand(-1, 1);
-         vy = rand(-1, 1);
-         r = rand(1, 3);
-         red = Math.round(255);
-         green = Math.round(255);
-         blue = Math.round(255);
-         alpha = 1;
-         col = "rgba(" + red + "," + green + "," + blue + "," + alpha + ")";
+function init() {
+    var x, y, vx, vy, r, red, green, blue, alpha, col, bt;
+    
+    // Determine how many particles exist
+    var existingParticles = P.length;
+    
+    // Calculate how many more particles are needed to reach part_num (2000)
+    var particlesToAdd = part_num - existingParticles;
 
-         P.push(new part(x, y, vx, vy, r, 255, 255, 255, alpha, col));
-      }
-   }
+    // Only add new particles if needed
+    for (var i = 0; i < particlesToAdd; i++) {
+        x = rand(0, canvas.width);
+        y = rand(0, canvas.height);
+        vx = rand(-1, 1);
+        vy = rand(-1, 1);
+        r = rand(1, 3);
+        red = Math.round(255);
+        green = Math.round(255);
+        blue = Math.round(255);
+        alpha = 1;
+        col = "rgba(" + red + "," + green + "," + blue + "," + alpha + ")";
+        bt = Date.now(); // Record the creation time
+
+        P.push(new part(x, y, vx, vy, r, red, green, blue, alpha, col, bt));
+    }
+}
 
    function bg() {
       ctx.fillStyle = "rgba(5,5,10,1)";
@@ -112,8 +121,16 @@ window.onload = function() {
 
    function draw() {
       var p;
+	  var currentTime = Date.now();
+	  var deathTime = rand(5000, 30000);
       for (var i = 0; i < P.length; i++) {
          p = P[i];
+
+         var age = currentTime - p.birthTime;
+		 if (age > deathTime) {
+            P.splice(i, 1);
+            continue;
+        }
 
          if(mouseover) attract(p);
          bounce(p);
@@ -126,12 +143,7 @@ window.onload = function() {
 
          ctx.fillStyle=p.col;
          ctx.fillRect(p.x,p.y,p.r,p.r);
-         //ctx.beginPath();
-         //ctx.fillStyle = p.col;
-         //ctx.arc(p.x, p.y, p.r, 0, 2 * pi);
-         //ctx.fill();
 
-         
       }
       ctx.strokeStyle = (!mousedown) ? "rgba(255,255,255,1)" : "rgba(255,0,0,1)";
 
@@ -147,6 +159,7 @@ window.onload = function() {
    function loop() {
       bg();
       draw();
+	  init();
 
       window.requestAnimationFrame(loop);
    }
