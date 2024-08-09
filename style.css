@@ -10,3 +10,7 @@ html {
 canvas {
    cursor:none;
 }
+
+body {
+  background-color: rgb(5,5,10);
+}
