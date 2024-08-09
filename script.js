@@ -100,20 +100,20 @@ window.onload = function() {
    }
 
    function attract(p) {
-      var dx = (p.x - X),
+	 var aSpeed = rand(5, 50)
+     var rSpeed = rand(100, 300)	 
+     var dx = (p.x - X),
          dy = (p.y - Y),
          dist = Math.sqrt(dx * dx + dy * dy),
          angle = Math.atan2(dy, dx);
 
-      if (dist > 3 && dist < 300) {
-         if (mousedown) {
-            p.vx -= (20 / (p.r * dist)) * Math.cos(angle);
-            p.vy -= (20 / (p.r * dist)) * Math.sin(angle);
-         } else if (!mousedown) {
-            p.vx += (250 / (p.r * dist)) * Math.cos(angle);
-            p.vy += (250 / (p.r * dist)) * Math.sin(angle);
-         }
-      }
+     if (mousedown && dist < 500) {
+         p.vx -= (aSpeed / (p.r * dist)) * Math.cos(angle);
+         p.vy -= (aSpeed / (p.r * dist)) * Math.sin(angle);
+     } else if (!mousedown && dist < 30) {
+         p.vx += (rSpeed / (p.r * dist)) * Math.cos(angle);
+         p.vy += (rSpeed / (p.r * dist)) * Math.sin(angle);
+     }
    }
 
    function draw() {
