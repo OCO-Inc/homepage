@@ -21,59 +21,33 @@ window.onload = function() {
       this.dt = dt;  
    };
 
+   function checkCollision(p1, p2) {
+      var dx = p1.x - p2.x;
+      var dy = p1.y - p2.y;
+      var distance = Math.sqrt(dx * dx + dy * dy);
+      return distance < (p1.r + p2.r);
+   }
 
+   function resolveCollision(p1, p2) {
+      var dx = p1.x - p2.x;
+      var dy = p1.y - p2.y;
+      var distance = Math.sqrt(dx * dx + dy * dy);
+      var nx = dx / distance;
+      var ny = dy / distance;
+      var dvx = p1.vx - p2.vx;
+      var dvy = p1.vy - p2.vy;
+      var velocityAlongNormal = dvx * nx + dvy * ny;
 
+      if (velocityAlongNormal > 0) return;
+	
+      var elasticity = 0.85; // 1 for perfectly elastic collision, < 1 for inelastic collision, > 1 to add energy (not reccomended)
+      var impulse = (2 * velocityAlongNormal) / (p1.r + p2.r);
 
-
-
-
-function checkCollision(p1, p2) {
-    // Calculate the distance between the two particles
-    var dx = p1.x - p2.x;
-    var dy = p1.y - p2.y;
-    var distance = Math.sqrt(dx * dx + dy * dy);
-    
-    // Check if the distance is less than the sum of their radii
-    return distance < (p1.r + p2.r);
-}
-
-function resolveCollision(p1, p2) {
-    var dx = p1.x - p2.x;
-    var dy = p1.y - p2.y;
-    var distance = Math.sqrt(dx * dx + dy * dy);
-    
-    // Normalize the direction vector
-    var nx = dx / distance;
-    var ny = dy / distance;
-
-    // Calculate the relative velocity in the direction of the normal
-    var dvx = p1.vx - p2.vx;
-    var dvy = p1.vy - p2.vy;
-    var velocityAlongNormal = dvx * nx + dvy * ny;
-
-    // If particles are moving apart, no need to resolve collision
-    if (velocityAlongNormal > 0) return;
-
-    // Calculate the bounce factor (elasticity)
-    var elasticity = 1; // 1 for perfectly elastic collision, < 1 for inelastic collision
-
-    // Calculate impulse scalar
-    var impulse = (2 * velocityAlongNormal) / (p1.r + p2.r);
-
-    // Apply impulse to the particles
-    p1.vx -= impulse * p2.r * nx * elasticity;
-    p1.vy -= impulse * p2.r * ny * elasticity;
-    p2.vx += impulse * p1.r * nx * elasticity;
-    p2.vy += impulse * p1.r * ny * elasticity;
-}
-
-
-
-
-
-
-
-
+      p1.vx -= impulse * p2.r * nx * elasticity;
+      p1.vy -= impulse * p2.r * ny * elasticity;
+	  p2.vx += impulse * p1.r * nx * elasticity;
+	  p2.vy += impulse * p1.r * ny * elasticity;
+   }
 
    function rand(min, max) {
       return Math.random() * (max - min) + min;
