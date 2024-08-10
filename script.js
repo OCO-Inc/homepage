@@ -145,7 +145,6 @@ window.onload = function() {
 
          ctx.fillStyle = p.col;
          drawCircle(ctx, p.x, p.y, p.r)
-		 console.log(p)
       }
    }
 
