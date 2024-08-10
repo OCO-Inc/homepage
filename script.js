@@ -175,8 +175,7 @@ window.onload = function() {
 
    init();
    loop();
-}
-
+   
 /******************************
 Planned customization options:
               --
@@ -199,3 +198,5 @@ Background color (Hex)
 Invert click function (Boolean)
 Spawn w/ velocity? (Boolean)
 ******************************/
+}
+
