@@ -57,7 +57,10 @@ window.onload = function() {
 		   vx = 0
 		   vy = 0
 		 }
-         r = rand(1, 6);
+         r = rand(1, 3);
+		 if (r > 2.8) {
+		   r = rand(3, 10);
+		 }
 		 
          red = Math.round(rand(235, 255));
          green = Math.round(rand(235, 255));
