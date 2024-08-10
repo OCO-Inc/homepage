@@ -112,6 +112,7 @@ window.onload = function() {
      } else if (!mousedown && dist < 7) {
          p.vx = 0
          p.vy = 0
+     }
    }
 
    function draw() {
@@ -177,3 +178,26 @@ window.onload = function() {
    loop();
 
 }
+
+/*
+Planned customization options:
+              --
+Total particles
+Death time minimum
+Death time maximum
+Velocity loss speed
+Radius Minimum
+Radius Maximum
+Repel radius
+Attract radius
+Repel Strength minimum
+Repel Strength maximum
+Attract strength minimum
+Attract strength maximum
+
+Particle color (Hex)
+Background color (Hex)
+
+Invert click function (Boolean)
+Spawn w/ velocity? (Boolean)
+*/
