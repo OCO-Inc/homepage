@@ -107,10 +107,10 @@ window.onload = function() {
          dist = Math.sqrt(dx * dx + dy * dy),
          angle = Math.atan2(dy, dx);
 
-     if (!mousedown && dist < 180) {
+     if (!mousedown && dist < 200 && dist > 30) {
          p.vx -= (aSpeed / (p.r * dist)) * Math.cos(angle);
          p.vy -= (aSpeed / (p.r * dist)) * Math.sin(angle);
-     } else if (mousedown && dist < 80) {
+     } else if (mousedown && dist < 100 && dist > 30) {
          p.vx += (rSpeed / (p.r * dist)) * Math.cos(angle);
          p.vy += (rSpeed / (p.r * dist)) * Math.sin(angle);
      }
