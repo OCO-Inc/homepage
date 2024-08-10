@@ -21,6 +21,60 @@ window.onload = function() {
       this.dt = dt;  
    };
 
+
+
+
+
+
+
+function checkCollision(p1, p2) {
+    // Calculate the distance between the two particles
+    var dx = p1.x - p2.x;
+    var dy = p1.y - p2.y;
+    var distance = Math.sqrt(dx * dx + dy * dy);
+    
+    // Check if the distance is less than the sum of their radii
+    return distance < (p1.r + p2.r);
+}
+
+function resolveCollision(p1, p2) {
+    var dx = p1.x - p2.x;
+    var dy = p1.y - p2.y;
+    var distance = Math.sqrt(dx * dx + dy * dy);
+    
+    // Normalize the direction vector
+    var nx = dx / distance;
+    var ny = dy / distance;
+
+    // Calculate the relative velocity in the direction of the normal
+    var dvx = p1.vx - p2.vx;
+    var dvy = p1.vy - p2.vy;
+    var velocityAlongNormal = dvx * nx + dvy * ny;
+
+    // If particles are moving apart, no need to resolve collision
+    if (velocityAlongNormal > 0) return;
+
+    // Calculate the bounce factor (elasticity)
+    var elasticity = 1; // 1 for perfectly elastic collision, < 1 for inelastic collision
+
+    // Calculate impulse scalar
+    var impulse = (2 * velocityAlongNormal) / (p1.r + p2.r);
+
+    // Apply impulse to the particles
+    p1.vx -= impulse * p2.r * nx * elasticity;
+    p1.vy -= impulse * p2.r * ny * elasticity;
+    p2.vx += impulse * p1.r * nx * elasticity;
+    p2.vy += impulse * p1.r * ny * elasticity;
+}
+
+
+
+
+
+
+
+
+
    function rand(min, max) {
       return Math.random() * (max - min) + min;
    }
@@ -118,9 +172,43 @@ window.onload = function() {
      ctx.fill()
    }
 
-function draw() {
+/*   function draw() {
+      var p;
+      var currentTime = Date.now();
+	  ctx.fillStyle = "white"
+      ctx.font = "12px caption";
+      ctx.fillText("Move your mouse around to collect stars, and click to release them!", 8, 8);
+	  
+      for (var i = P.length - 1; i >= 0; i--) {
+         p = P[i];
+         var age = currentTime - p.birthTime;
+
+         if (age > p.dt) {
+            P.splice(i, 1);
+            continue;
+         }
+		 
+         if (mouseover) attract(p);
+         bounce(p);
+
+         p.x += p.vx;
+         p.y += p.vy;
+
+         p.vx *= .985;
+         p.vy *= .985;
+
+         ctx.fillStyle = p.col;
+         drawCircle(ctx, p.x, p.y, p.r)
+      }
+   } */
+   
+   function draw() {
     var p;
     var currentTime = Date.now();
+	
+	ctx.fillStyle = "white"
+    ctx.font = "12px caption";
+    ctx.fillText("Move your mouse around to collect stars, and click to release them!", 8, 8);
 
     // Loop through particles backwards to safely remove them
     for (var i = P.length - 1; i >= 0; i--) {
@@ -148,11 +236,11 @@ function draw() {
         p.x += p.vx;
         p.y += p.vy;
 
-        p.vx *= .975;
-        p.vy *= .975;
+        p.vx *= .985;
+        p.vy *= .985;
 
         ctx.fillStyle = p.col;
-        ctx.fillRect(p.x, p.y, p.r, p.r);
+        drawCircle(ctx, p.x, p.y, p.r);
     }
 
     ctx.strokeStyle = (!mousedown) ? "rgba(255,255,255,1)" : "rgba(255,0,0,1)";
@@ -164,6 +252,7 @@ function draw() {
     ctx.lineTo(X + 10, Y);
     ctx.stroke();
 }
+
 
    function loop() {
       bg();
