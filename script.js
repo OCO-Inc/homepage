@@ -57,11 +57,11 @@ window.onload = function() {
 		   vx = 0
 		   vy = 0
 		 }
-		 
          r = rand(1, 5);
-         red = Math.round(255);
-         green = Math.round(255);
-         blue = Math.round(255);
+		 
+         red = Math.round(rand(235, 255));
+         green = Math.round(rand(235, 255));
+         blue = Math.round(rand(235, 255));
          alpha = 1;
          col = "rgba(" + red + "," + green + "," + blue + "," + alpha + ")";
          birthTime = Date.now();
@@ -109,10 +109,16 @@ window.onload = function() {
      } else if (mousedown && dist < 100) {
          p.vx += (80 / (p.r * dist)) * Math.cos(angle);
          p.vy += (80 / (p.r * dist)) * Math.sin(angle);
-     } else if (!mousedown && dist < 7) {
+     } else if (!mousedown && dist < 2) {
          p.vx = 0
          p.vy = 0
      }
+   }
+   
+   function drawCircle(ctx, x, y, radius,) {
+     ctx.beginPath()
+     ctx.arc(x, y, radius, 0, 2 * Math.PI, false)
+     ctx.fill()
    }
 
    function draw() {
@@ -138,7 +144,7 @@ window.onload = function() {
          p.vy *= .985;
 
          ctx.fillStyle = p.col;
-         ctx.fillRect(p.x, p.y, p.r, p.r);
+         drawCircle(ctx, p.x, p.y, p.r)
       }
    }
 
