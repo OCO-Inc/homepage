@@ -64,7 +64,7 @@ window.onload = function() {
 		   vx = 0
 		   vy = 0
 		 }
-         r = wRand(1, 10, 100, 1);
+         r = wRand(1, 10, 35, 1);
 		 
          red = Math.round(rand(235, 255));
          green = Math.round(rand(235, 255));
