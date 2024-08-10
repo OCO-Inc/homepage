@@ -100,8 +100,7 @@ window.onload = function() {
    }
 
    function attract(p) {
-     var rSpeed = rand(15, 100)	 
-     var dx = (p.x - X),
+         dx = (p.x - X),
          dy = (p.y - Y),
          dist = Math.sqrt(dx * dx + dy * dy),
          angle = Math.atan2(dy, dx);
@@ -113,8 +112,8 @@ window.onload = function() {
          p.vx += (80 / (p.r * dist)) * Math.cos(angle);
          p.vy += (80 / (p.r * dist)) * Math.sin(angle);
      } else if (!mousedown && dist < 2) {
-         p.vx = 0
-         p.vy = 0
+         p.vx = rand(-1, 1)
+         p.vy = rand(-1, 1)
      }
    }
    
