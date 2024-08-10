@@ -146,15 +146,6 @@ window.onload = function() {
          ctx.fillStyle = p.col;
          ctx.fillRect(p.x, p.y, p.r, p.r);
       }
-
-      ctx.strokeStyle = (!mousedown) ? "rgba(255,255,255,1)" : "rgba(255,0,0,1)";
-
-      ctx.beginPath();
-      ctx.moveTo(X, Y - 10);
-      ctx.lineTo(X, Y + 10);
-      ctx.moveTo(X - 10, Y);
-      ctx.lineTo(X + 10, Y);
-      ctx.stroke();
    }
 
    function loop() {
