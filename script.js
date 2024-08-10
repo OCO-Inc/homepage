@@ -32,21 +32,30 @@ window.onload = function() {
       var dx = p1.x - p2.x;
       var dy = p1.y - p2.y;
       var distance = Math.sqrt(dx * dx + dy * dy);
+
       var nx = dx / distance;
       var ny = dy / distance;
+	  
+      var overlap = (p1.r + p2.r) - distance;
+
+      p1.x += nx * overlap / 2;
+      p1.y += ny * overlap / 2;
+      p2.x -= nx * overlap / 2;
+      p2.y -= ny * overlap / 2;
+
       var dvx = p1.vx - p2.vx;
       var dvy = p1.vy - p2.vy;
       var velocityAlongNormal = dvx * nx + dvy * ny;
 
       if (velocityAlongNormal > 0) return;
-	
-      var elasticity = 0.85; // 1 for perfectly elastic collision, < 1 for inelastic collision, > 1 to add energy (not reccomended)
-      var impulse = (2 * velocityAlongNormal) / (p1.r + p2.r);
+	  
+      var elasticity = 0.9;  // 0 = inelastic, 1 = perfect
+      var impulse = (2 * velocityAlongNormal) / (p1.r + p2.r) * elasticity;
 
-      p1.vx -= impulse * p2.r * nx * elasticity;
-      p1.vy -= impulse * p2.r * ny * elasticity;
-	  p2.vx += impulse * p1.r * nx * elasticity;
-	  p2.vy += impulse * p1.r * ny * elasticity;
+      p1.vx -= impulse * p2.r * nx;
+      p1.vy -= impulse * p2.r * ny;
+      p2.vx += impulse * p1.r * nx;
+      p2.vy += impulse * p1.r * ny;
    }
 
    function rand(min, max) {
@@ -146,86 +155,46 @@ window.onload = function() {
      ctx.fill()
    }
 
-/*   function draw() {
+   function draw() {
+	  var collision = true
+	   
       var p;
       var currentTime = Date.now();
+	
 	  ctx.fillStyle = "white"
       ctx.font = "12px caption";
       ctx.fillText("Move your mouse around to collect stars, and click to release them!", 8, 8);
-	  
+
       for (var i = P.length - 1; i >= 0; i--) {
-         p = P[i];
-         var age = currentTime - p.birthTime;
+          p = P[i];
+		  
+          var age = currentTime - p.birthTime;
+          if (age > p.dt) {
+              P.splice(i, 1);
+              continue;
+          }
 
-         if (age > p.dt) {
-            P.splice(i, 1);
-            continue;
-         }
-		 
-         if (mouseover) attract(p);
-         bounce(p);
-
-         p.x += p.vx;
-         p.y += p.vy;
-
-         p.vx *= .985;
-         p.vy *= .985;
-
-         ctx.fillStyle = p.col;
-         drawCircle(ctx, p.x, p.y, p.r)
-      }
-   } */
-   
-   function draw() {
-    var p;
-    var currentTime = Date.now();
-	
-	ctx.fillStyle = "white"
-    ctx.font = "12px caption";
-    ctx.fillText("Move your mouse around to collect stars, and click to release them!", 8, 8);
-
-    // Loop through particles backwards to safely remove them
-    for (var i = P.length - 1; i >= 0; i--) {
-        p = P[i];
-
-        // Check particle age and remove if necessary
-        var age = currentTime - p.birthTime;
-        if (age > p.dt) {
-            P.splice(i, 1);
-            continue;
-        }
-
-        // Check for collisions with other particles
-        for (var j = i - 1; j >= 0; j--) {
-            var otherP = P[j];
-            if (checkCollision(p, otherP)) {
-                resolveCollision(p, otherP);
+          if (collision) {
+            for (var j = i - 1; j >= 0; j--) {
+               var otherP = P[j];
+               if (checkCollision(p, otherP)) {
+                 resolveCollision(p, otherP);
+               }
             }
-        }
+		  }
+          if (mouseover) attract(p);
+          bounce(p);
 
-        // Existing particle behavior
-        if (mouseover) attract(p);
-        bounce(p);
+          p.x += p.vx;
+          p.y += p.vy;
 
-        p.x += p.vx;
-        p.y += p.vy;
+          p.vx *= .985;
+          p.vy *= .985;
 
-        p.vx *= .985;
-        p.vy *= .985;
-
-        ctx.fillStyle = p.col;
-        drawCircle(ctx, p.x, p.y, p.r);
-    }
-
-    ctx.strokeStyle = (!mousedown) ? "rgba(255,255,255,1)" : "rgba(255,0,0,1)";
-
-    ctx.beginPath();
-    ctx.moveTo(X, Y - 10);
-    ctx.lineTo(X, Y + 10);
-    ctx.moveTo(X - 10, Y);
-    ctx.lineTo(X + 10, Y);
-    ctx.stroke();
-}
+          ctx.fillStyle = p.col;
+          drawCircle(ctx, p.x, p.y, p.r);
+      }
+  }
 
 
    function loop() {
@@ -280,6 +249,7 @@ Repel Strength minimum
 Repel Strength maximum
 Attract strength minimum
 Attract strength maximum
+Collision elasticity
 
 Particle color (Hex)
 Background color (Hex)
@@ -287,4 +257,5 @@ Background color (Hex)
 Invert click function (Boolean)
 Spawn w/ velocity? (Boolean)
 Show prompt text (Boolean)
+Allow collision? (Boolean)
 */
