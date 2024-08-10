@@ -10,16 +10,12 @@ window.onload = function() {
    var X, Y;
    var P = [];
 
-   var part = function(x, y, vx, vy, r, red, green, blue, alpha, col, birthTime, dt) {
+   var part = function(x, y, vx, vy, r, col, birthTime, dt) {
       this.x = x;
       this.y = y;
       this.vx = vx;
       this.vy = vy;
       this.r = r;
-      this.red = red;
-      this.green = green;
-      this.blue = blue;
-      this.alpha = alpha;
       this.col = col;
       this.birthTime = birthTime;
       this.dt = dt;  
@@ -41,7 +37,7 @@ window.onload = function() {
    Y = centerY;
 
    function init() {
-      var x, y, vx, vy, r, red, green, blue, alpha, col, birthTime, dt;
+      var x, y, vx, vy, r, col, birthTime, dt;
       var existingParticles = P.length;
       var particlesToAdd = part_num - existingParticles;
 	  var startVelocity = false
@@ -62,15 +58,14 @@ window.onload = function() {
 		   r = rand(1, 6);
 		 }
 		 
-         red = Math.round(rand(205, 255));
+         red = Math.round(rand(235, 255));
          green = Math.round(rand(235, 255));
          blue = Math.round(rand(235, 255));
-         alpha = 1;
-         col = "rgba(" + red + "," + green + "," + blue + "," + alpha + ")";
+         col = "rgba(" + red + "," + green + "," + blue + "," + 1 + ")";
          birthTime = Date.now();
          dt = rand(10000, 180000);
 
-         P.push(new part(x, y, vx, vy, r, red, green, blue, alpha, col, birthTime, dt));
+         P.push(new part(x, y, vx, vy, r, col, birthTime, dt));
       }
    }
 
