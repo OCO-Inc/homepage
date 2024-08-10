@@ -2,9 +2,7 @@ window.onload = function() {
 
    var canvas = document.getElementById("canvas");
    var ctx = canvas.getContext("2d");
-
-   var pi = Math.PI;
-
+   
    var centerX, centerY;
    var part_num = 2000;
 
@@ -31,10 +29,6 @@ window.onload = function() {
       return Math.random() * (max - min) + min;
    }
 
-   function dist(dx, dy) {
-      return Math.sqrt(dx * dx + dy * dy);
-   }
-
    function size() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -50,7 +44,7 @@ window.onload = function() {
       var x, y, vx, vy, r, red, green, blue, alpha, col, birthTime, dt;
       var existingParticles = P.length;
       var particlesToAdd = part_num - existingParticles;
-	  var startVelocity = true
+	  var startVelocity = false
 	  
       for (var i = 0; i < particlesToAdd; i++) {
          x = rand(0, canvas.width);
@@ -64,7 +58,7 @@ window.onload = function() {
 		   vy = 0
 		 }
 		 
-         r = rand(1, 3);
+         r = rand(1, 5);
          red = Math.round(255);
          green = Math.round(255);
          blue = Math.round(255);
@@ -115,7 +109,9 @@ window.onload = function() {
      } else if (mousedown && dist < 100) {
          p.vx += (80 / (p.r * dist)) * Math.cos(angle);
          p.vy += (80 / (p.r * dist)) * Math.sin(angle);
-     }
+     } else if (!mousedown && dist < 7) {
+         p.vx = 0
+         p.vy = 0
    }
 
    function draw() {
