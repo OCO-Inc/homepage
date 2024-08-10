@@ -57,9 +57,9 @@ window.onload = function() {
 		   vx = 0
 		   vy = 0
 		 }
-         r = rand(1, 3);
+         r = rand(0.01, 3);
 		 if (r > 2.8) {
-		   r = rand(3, 10);
+		   r = rand(1, 8);
 		 }
 		 
          red = Math.round(rand(235, 255));
