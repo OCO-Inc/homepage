@@ -21,13 +21,6 @@ window.onload = function() {
       this.dt = dt;  
    };
 
-   function checkCollision(p1, p2) {
-      var dx = p1.x - p2.x;
-      var dy = p1.y - p2.y;
-      var distance = Math.sqrt(dx * dx + dy * dy);
-      return distance < (p1.r + p2.r);
-   }
-
    function resolveCollision(p1, p2) {
       var dx = p1.x - p2.x;
       var dy = p1.y - p2.y;
@@ -35,9 +28,8 @@ window.onload = function() {
 
       var nx = dx / distance;
       var ny = dy / distance;
-	  
-      var overlap = (p1.r + p2.r) - distance;
 
+      var overlap = (p1.r + p2.r) - distance;
       p1.x += nx * overlap / 2;
       p1.y += ny * overlap / 2;
       p2.x -= nx * overlap / 2;
@@ -48,14 +40,19 @@ window.onload = function() {
       var velocityAlongNormal = dvx * nx + dvy * ny;
 
       if (velocityAlongNormal > 0) return;
-	  
-      var elasticity = 0.9;  // 0 = inelastic, 1 = perfect
+
+      var elasticity = 0.9;
       var impulse = (2 * velocityAlongNormal) / (p1.r + p2.r) * elasticity;
 
       p1.vx -= impulse * p2.r * nx;
       p1.vy -= impulse * p2.r * ny;
       p2.vx += impulse * p1.r * nx;
       p2.vy += impulse * p1.r * ny;
+
+      p1.vx *= 0.99;
+      p1.vy *= 0.99;
+      p2.vx *= 0.99;
+      p2.vy *= 0.99;
    }
 
    function rand(min, max) {
