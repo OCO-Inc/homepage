@@ -28,6 +28,13 @@ window.onload = function() {
    function rand(min, max) {
       return Math.random() * (max - min) + min;
    }
+   
+   function wRand(min, max, minWeight, maxWeight) {
+    const randomFactor = Math.random();
+    const weight = minWeight + (maxWeight - minWeight) * randomFactor;
+    const weightedValue = min + (max - min) * Math.pow(randomFactor, weight);
+    return weightedValue;
+   }
 
    function size() {
       canvas.width = window.innerWidth;
@@ -57,7 +64,7 @@ window.onload = function() {
 		   vx = 0
 		   vy = 0
 		 }
-         r = rand(1, 5);
+         r = wRand(1, 10, 2, 0);
 		 
          red = Math.round(rand(235, 255));
          green = Math.round(rand(235, 255));
