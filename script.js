@@ -48,7 +48,7 @@ window.onload = function() {
 
       if (velocityAlongNormal > 0) return;
 
-      var elasticity = 0.3;
+      var elasticity = 0.6;
       var impulse = (2 * velocityAlongNormal) / (p1.r + p2.r) * elasticity;
 
       p1.vx -= impulse * p2.r * nx;
