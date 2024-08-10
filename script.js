@@ -126,6 +126,10 @@ window.onload = function() {
    function draw() {
       var p;
       var currentTime = Date.now();
+	  ctx.fillStyle = #FFF
+      ctx.font = "6px caption";
+      ctx.fillText("Move your mouse around to collect stars, and click to release them!", 0, 0);
+}
 	  
       for (var i = P.length - 1; i >= 0; i--) {
          p = P[i];
