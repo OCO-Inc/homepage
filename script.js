@@ -59,10 +59,10 @@ window.onload = function() {
 		 }
          r = rand(0.01, 3);
 		 if (r > 2.8) {
-		   r = rand(1, 8);
+		   r = rand(1, 6);
 		 }
 		 
-         red = Math.round(rand(235, 255));
+         red = Math.round(rand(205, 255));
          green = Math.round(rand(235, 255));
          blue = Math.round(rand(235, 255));
          alpha = 1;
@@ -112,8 +112,8 @@ window.onload = function() {
          p.vx += (80 / (p.r * dist)) * Math.cos(angle);
          p.vy += (80 / (p.r * dist)) * Math.sin(angle);
      } else if (!mousedown && dist < 2) {
-         p.vx = rand(-1, 1)
-         p.vy = rand(-1, 1)
+         p.vx = rand(-0.2, 0.2)
+         p.vy = rand(-0.2, 0.2)
      }
    }
    
