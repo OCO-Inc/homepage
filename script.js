@@ -126,7 +126,7 @@ window.onload = function() {
    function draw() {
       var p;
       var currentTime = Date.now();
-	  ctx.fillStyle = #FFF
+	  ctx.fillStyle = "white"
       ctx.font = "6px caption";
       ctx.fillText("Move your mouse around to collect stars, and click to release them!", 0, 0);
 }
