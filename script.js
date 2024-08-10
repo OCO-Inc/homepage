@@ -118,35 +118,52 @@ window.onload = function() {
      ctx.fill()
    }
 
-   function draw() {
-      var p;
-      var currentTime = Date.now();
-	  ctx.fillStyle = "white"
-      ctx.font = "12px caption";
-      ctx.fillText("Move your mouse around to collect stars, and click to release them!", 8, 8);
-	  
-      for (var i = P.length - 1; i >= 0; i--) {
-         p = P[i];
-         var age = currentTime - p.birthTime;
+function draw() {
+    var p;
+    var currentTime = Date.now();
 
-         if (age > p.dt) {
+    // Loop through particles backwards to safely remove them
+    for (var i = P.length - 1; i >= 0; i--) {
+        p = P[i];
+
+        // Check particle age and remove if necessary
+        var age = currentTime - p.birthTime;
+        if (age > p.dt) {
             P.splice(i, 1);
             continue;
-         }
-		 
-         if (mouseover) attract(p);
-         bounce(p);
+        }
 
-         p.x += p.vx;
-         p.y += p.vy;
+        // Check for collisions with other particles
+        for (var j = i - 1; j >= 0; j--) {
+            var otherP = P[j];
+            if (checkCollision(p, otherP)) {
+                resolveCollision(p, otherP);
+            }
+        }
 
-         p.vx *= .985;
-         p.vy *= .985;
+        // Existing particle behavior
+        if (mouseover) attract(p);
+        bounce(p);
 
-         ctx.fillStyle = p.col;
-         drawCircle(ctx, p.x, p.y, p.r)
-      }
-   }
+        p.x += p.vx;
+        p.y += p.vy;
+
+        p.vx *= .975;
+        p.vy *= .975;
+
+        ctx.fillStyle = p.col;
+        ctx.fillRect(p.x, p.y, p.r, p.r);
+    }
+
+    ctx.strokeStyle = (!mousedown) ? "rgba(255,255,255,1)" : "rgba(255,0,0,1)";
+
+    ctx.beginPath();
+    ctx.moveTo(X, Y - 10);
+    ctx.lineTo(X, Y + 10);
+    ctx.moveTo(X - 10, Y);
+    ctx.lineTo(X + 10, Y);
+    ctx.stroke();
+}
 
    function loop() {
       bg();
