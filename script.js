@@ -48,27 +48,30 @@ window.onload = function() {
 
    function init() {
       var x, y, vx, vy, r, red, green, blue, alpha, col, birthTime, dt;
-      
-      // Determine how many particles exist
       var existingParticles = P.length;
-      
-      // Calculate how many more particles are needed to reach part_num (2000)
       var particlesToAdd = part_num - existingParticles;
-
-      // Only add new particles if needed
+	  var startVelocity = true
+	  
       for (var i = 0; i < particlesToAdd; i++) {
          x = rand(0, canvas.width);
          y = rand(0, canvas.height);
-         vx = rand(-1, 1);
-         vy = rand(-1, 1);
+		 
+		 if (startVelocity) {
+           vx = rand(-1, 1);
+           vy = rand(-1, 1);
+		 } else {
+		   vx = 0
+		   vy = 0
+		 }
+		 
          r = rand(1, 3);
          red = Math.round(255);
          green = Math.round(255);
          blue = Math.round(255);
          alpha = 1;
          col = "rgba(" + red + "," + green + "," + blue + "," + alpha + ")";
-         birthTime = Date.now(); // Record the creation time
-         dt = rand(10000, 180000); // Set a random death time between 1s and 60s
+         birthTime = Date.now();
+         dt = rand(10000, 180000);
 
          P.push(new part(x, y, vx, vy, r, red, green, blue, alpha, col, birthTime, dt));
       }
@@ -100,40 +103,34 @@ window.onload = function() {
    }
 
    function attract(p) {
-	 var aSpeed = rand(5, 15)
      var rSpeed = rand(15, 100)	 
      var dx = (p.x - X),
          dy = (p.y - Y),
          dist = Math.sqrt(dx * dx + dy * dy),
          angle = Math.atan2(dy, dx);
 
-     if (!mousedown && dist < 200 && dist > 10) {
-         p.vx -= (aSpeed / (p.r * dist)) * Math.cos(angle);
-         p.vy -= (aSpeed / (p.r * dist)) * Math.sin(angle);
-     } else if (mousedown && dist < 100 && dist > 2) {
-         p.vx += (rSpeed / (p.r * dist)) * Math.cos(angle);
-         p.vy += (rSpeed / (p.r * dist)) * Math.sin(angle);
+     if (!mousedown && dist < 200 && dist > 7) {
+         p.vx -= (15 / (p.r * dist)) * Math.cos(angle);
+         p.vy -= (15 / (p.r * dist)) * Math.sin(angle);
+     } else if (mousedown && dist < 100) {
+         p.vx += (80 / (p.r * dist)) * Math.cos(angle);
+         p.vy += (80 / (p.r * dist)) * Math.sin(angle);
      }
    }
 
    function draw() {
       var p;
       var currentTime = Date.now();
-
-      // Loop backwards to safely remove particles
+	  
       for (var i = P.length - 1; i >= 0; i--) {
          p = P[i];
-
-         // Calculate particle's age
          var age = currentTime - p.birthTime;
 
-         // Check if the particle should be removed based on its death time
          if (age > p.dt) {
             P.splice(i, 1);
             continue;
          }
-
-         // Existing particle behavior
+		 
          if (mouseover) attract(p);
          bounce(p);
 
@@ -183,3 +180,26 @@ window.onload = function() {
    init();
    loop();
 }
+
+/******************************
+Planned customization options:
+              --
+Total particles
+Death time minimum
+Death time maximum
+Velocity loss speed
+Radius Minimum
+Radius Maximum
+Repel radius
+Attract radius
+Repel Strength minimum
+Repel Strength maximum
+Attract strength minimum
+Attract strength maximum
+
+Particle color (Hex)
+Background color (Hex)
+
+Invert click function (Boolean)
+Spawn w/ velocity? (Boolean)
+******************************/
