@@ -127,7 +127,7 @@ window.onload = function() {
       var p;
       var currentTime = Date.now();
 	  ctx.fillStyle = "white"
-      ctx.font = "6px caption";
+      ctx.font = "12px caption";
       ctx.fillText("Move your mouse around to collect stars, and click to release them!", 8, 8);
 	  
       for (var i = P.length - 1; i >= 0; i--) {
@@ -211,4 +211,5 @@ Background color (Hex)
 
 Invert click function (Boolean)
 Spawn w/ velocity? (Boolean)
+Show prompt text (Boolean)
 */
