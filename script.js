@@ -201,7 +201,7 @@ window.onload = function () {
     for (let i = P.length - 1; i >= 0; i--) { // work through every particle in the list
       p = P[i]
 
-      if (death) {
+      if (s.death) {
         const age = currentTime - p.birthTime // Kill any particles who should be dead
         if (age > p.dt) {
           P.splice(i, 1)
@@ -240,6 +240,11 @@ window.onload = function () {
 
   // Code ran when the website is opened
   window.onresize = size
+
+  size();
+  X = centerX;
+  Y = centerY;
+
 
   window.onmousemove = function (e) {
     X = e.clientX
