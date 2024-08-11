@@ -218,7 +218,7 @@ window.onload = function () {
           }
         }
       }
-      if (mouseover && doMouseOver) attract(p)
+      if (mouseover && s.doMouseOver) attract(p)
       bounce(p)
 
       p.x += p.vx
