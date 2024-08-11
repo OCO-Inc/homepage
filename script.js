@@ -140,7 +140,7 @@ window.onload = function () {
   }
 
   function bg () { // set background color
-    ctx.fillStyle = 's.bgCol'
+    ctx.fillStyle = s.bgCol
     ctx.fillRect(0, 0, canvas.width, canvas.height)
   }
 
@@ -242,8 +242,8 @@ window.onload = function () {
   window.onresize = size
 
   size();
-  X = centerX;
   Y = centerY;
+  X = centerX;
 
 
   window.onmousemove = function (e) {
