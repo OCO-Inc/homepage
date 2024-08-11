@@ -242,12 +242,39 @@ function draw() {
   }
 }
 
+/*
 function loop() {
-  // Animation loop
+  // Animation loop (Deprecated version: did not lock to frame rate)
   bg();
   draw();
   init();
   window.requestAnimationFrame(loop);
+}
+*/
+
+function loop() {
+  const fps = 60; // Target FPS
+  const interval = 1000 / fps; // Interval per frame in milliseconds
+
+  let lastTime = 0;
+
+  function animate(time) {
+    // Calculate the time difference since the last frame
+    const delta = time - lastTime;
+
+    if (delta >= interval) {
+      // Update the last frame time
+      lastTime = time - (delta % interval);
+
+      bg();
+      draw();
+      init();
+    }
+
+    window.requestAnimationFrame(animate);
+  }
+
+  window.requestAnimationFrame(animate);
 }
 
 // Code ran when the website is opened
