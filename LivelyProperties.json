@@ -93,7 +93,7 @@
   "spawnVel": {
     "type": "checkbox",
     "value": false,
-    "text": "Invert the mouse click functionality?"
+    "text": "Spawn with velocity?"
   },
   "spawnVelAmt": {
     "max": 10,

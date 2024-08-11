@@ -1,3 +1,48 @@
+const s = { // Default settings
+  totalStars: 2000,
+  dtMin: 10000,
+  dtMax: 180000,
+  velDecay: 0.985,
+  rMin: 1,
+  rMax: 6,
+  rRepel: 100,
+  rAttract: 200,
+  repelStrength: 80,
+  attractStrength: 15,
+  elasticity: 0.45,
+  startVelAmt: 1,
+  col: '#f7eedf',
+  bgCol: '#05050a',
+  invMouseDown: false,
+  spawnVel: false,
+  showPrompt: true,
+  collision: true,
+  death: true,
+  doMouseOver: true,
+}
+
+function hexToRGB (hex) {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return 'rgb(' + r + ', ' + g + ', ' + b + ')'
+}
+  
+function livelyPropertyListener (name, val) { // Listens for Lively Wallpaper's configuration change calls
+    if (s.hasOwnProperty(name)) {
+      if (['elasticity', 'velDecay'].includes(name)) { // for percentage
+        val = val * 100
+      }
+      if (['dtMin', 'dtMax'].includes(name)) { // for time in seconds
+        val = val * 1000
+      }
+      if (['col', 'bgCol'].includes(name)) { // for hex color
+        val = hexToRGB(val)
+      }
+      s[name] = val // apply setting globally, even if no operations were performed
+    }
+  }
+
 window.onload = function () {
   const canvas = document.getElementById('canvas')
   const ctx = canvas.getContext('2d')
@@ -17,51 +62,7 @@ window.onload = function () {
     this.dt = dt
   }
 
-  const s = { // Default settings
-    totalStars: 2000,
-    dtMin: 10000,
-    dtMax: 180000,
-    velDecay: 0.985,
-    rMin: 1,
-    rMax: 6,
-    rRepel: 100,
-    rAttract: 200,
-    repelStrength: 80,
-    attractStrength: 15,
-    elasticity: 0.45,
-    startVelAmt: 1,
-    col: '#f7eedf',
-    bgCol: '#05050a',
-    invMouseDown: false,
-    spawnVel: false,
-    showPrompt: true,
-    collision: true,
-    death: true,
-    doMouseOver: true,
-  }
 
-  function hexToRGB (hex) {
-    const r = parseInt(hex.slice(1, 3), 16)
-    const g = parseInt(hex.slice(3, 5), 16)
-    const b = parseInt(hex.slice(5, 7), 16)
-
-    return 'rgb(' + r + ', ' + g + ', ' + b + ')'
-  }
-
-  function livelyPropertyListener (name, val) { // Listens for Lively Wallpaper's configuration change calls
-    if (s.hasOwnProperty(name)) {
-      if (['elasticity', 'velDecay'].includes(name)) { // for percentage
-        val = val * 100
-      }
-      if (['dtMin', 'dtMax'].includes(name)) { // for time in seconds
-        val = val * 1000
-      }
-      if (['col', 'bgCol'].includes(name)) { // for hex color
-        val = hexToRGB(val)
-      }
-      s[name] = val // apply setting globally, even if no operations were performed
-    }
-  }
 
   function checkCollision (p1, p2) { // If two stars are beside or clipping into each other, return true
     const dx = p1.x - p2.x
