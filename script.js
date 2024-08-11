@@ -126,9 +126,9 @@ window.onload = function () {
 		   vx = 0
 		   vy = 0
 		 }
-      r = rand(rMin, rMax / 2)
+      r = rand(s.rMin, s.rMax / 2)
 		 if (r > rMax / 2.8) {
-		   r = rand(rMin, rMax)
+		   r = rand(s.rMin, s.rMax)
 		 }
 
       col = s.col
@@ -247,7 +247,7 @@ window.onload = function () {
   }
 
   window.onmouseup = function () {
-    if (invMouseDown) {
+    if (s.invMouseDown) {
       mousedown = false
     } else {
       mousedown = true
@@ -255,7 +255,7 @@ window.onload = function () {
   }
 
   window.onmousedown = function () {
-    if (invMouseDown) {
+    if (s.invMouseDown) {
       mousedown = true
     } else {
       mousedown = false
