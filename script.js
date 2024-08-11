@@ -127,7 +127,7 @@ window.onload = function () {
 		   vy = 0
 		 }
       r = rand(s.rMin, s.rMax / 2)
-		 if (r > rMax / 2.8) {
+		 if (r > s.rMax / 2.8) {
 		   r = rand(s.rMin, s.rMax)
 		 }
 
