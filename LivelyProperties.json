@@ -1,0 +1,168 @@
+ {
+  "misclabel": {
+    "type": "label",
+    "value": "MISC"
+  },
+  "bgCol": {
+    "text": "Background color",
+    "type": "color",
+    "value": "#05050A"
+  },
+  "showPrompt": {
+    "type": "checkbox",
+    "value": true,
+    "text": "Show a prompt of how to use the background?"
+  },
+  
+  
+  "spawnlabel": {
+    "type": "label",
+    "value": "Spawning settings"
+  },
+  "totalStars": {
+    "max": 10000,
+    "min": 10,
+    "text": "Total stars",
+    "type": "slider",
+    "help": "How many stars do you want on your screen at once?",
+    "value": 2000
+  },
+  "col": {
+    "text": "Star color",
+    "type": "color",
+    "value": "#F7EEDF"
+  },
+	"rMin": {
+    "max": 10,
+    "min": 0,
+    "text": "Minimum star radius (px)",
+    "type": "slider",
+    "help": "How large do you want the smallest star to be?",
+    "value": 0
+  },
+  "rMax": {
+    "max": 10,
+    "min": 1,
+    "text": "Maximum star radius (px)",
+    "type": "slider",
+    "help": "How big do you want the largest star to be? (Note: larger stars appear less often)",
+    "value": 6
+  },
+
+
+
+  "deathlabel": {
+    "type": "label",
+    "value": "Death related settings: stars randomly dying and spawning somewhere new"
+  },
+  "death": {
+    "type": "checkbox",
+    "value": true,
+    "text": "Enable the death system?"
+  },
+  "dtMin": {
+    "max": 3599,
+    "min": 1,
+    "text": "Minimum star death time",
+    "type": "slider",
+    "help": "Seconds until a star can die",
+    "value": 10 
+  },
+  "dtMax": {
+    "max": 3600,
+    "min": 1,
+    "text": "Maximum star death time",
+    "type": "slider",
+    "help": "Seconds until a star must die",
+    "value": 180
+  },
+	
+	
+	"velocitylabel": {
+    "type": "label",
+    "value": "Velocity related settings"
+  },
+  "velDecay": {
+    "max": 100 ,
+    "min": 0 ,
+    "text": "Decay speed of velocity (percent)",
+    "type": "slider",
+    "help": "100 = velocity is never removed (zero gravity), 0 = velocity is removed instantly.",
+    "value": 98
+  },
+  "spawnVel": {
+    "type": "checkbox",
+    "value": false,
+    "text": "Invert the mouse click functionality?"
+  },
+  "spawnVelAmt": {
+    "max": 10,
+    "min": 0,
+    "text": "Velocity amount on spawn",
+    "type": "slider",
+    "help": "How much random velocity would you like to give stars on their spawn?",
+    "value": 1 
+  },
+ 
+ 
+ 
+  "interactionlabel": {
+    "type": "label",
+    "value": "Mouse Interaction Settings"
+  },
+  "doMouseOver": {
+    "type": "checkbox",
+    "value": true,
+    "text": "Enable mouse interaction? (repel and attract). Uncheck if you just want random stars"
+  },
+  "collision": {
+    "type": "checkbox",
+    "value": true,
+    "text": "Enable collision between particles? (not recommended on low-end systems)"
+  },
+  "rRepel": {
+    "max": 1000,
+    "min": 1,
+    "text": "Repel radius (px)",
+    "type": "slider",
+    "help": "How far away should a star be pushed away from your mouse while holding LC?",
+    "value": 100
+  },
+  "rAttract": {
+    "max": 1000,
+    "min": 1,
+    "text": "Attract radius",
+    "type": "slider",
+    "help": "How far away should a star be attracted towards your mouse?",
+    "value": 200
+  },
+  "repelStrength": {
+    "max": 300,
+    "min": 1,
+    "text": "Repel Strength",
+    "type": "slider",
+    "help": "How quickly stars are pushed away on LC",
+    "value": 80
+  },
+  "attractStrength": {
+    "max": 300,
+    "min": 1,
+    "text": "Attract Strength",
+    "type": "slider",
+    "help": "How quickly stars are brought to your mouse",
+    "value": 15
+  },
+  "elasticity": {
+    "max": 100,
+    "min": 0,
+    "text": "Elasticity (%)",
+    "type": "slider",
+    "help": "How much energy should bouncing stars keep? (high = bouncy)",
+    "value": 60
+  },
+  "invMouseDown": {
+    "type": "checkbox",
+    "value": false,
+    "text": "Invert attraction and repelling? (stars fly away normally instead of flying towards the mouse)"
+  }
+}
