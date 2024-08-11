@@ -36,7 +36,8 @@ window.onload = function () {
     spawnVel: false,
     showPrompt: true,
     collision: true,
-    death: true
+    death: true,
+    doMouseOver: true,
   }
 
   function hexToRGB (hex) {
@@ -217,7 +218,7 @@ window.onload = function () {
           }
         }
       }
-      if (mouseover) attract(p)
+      if (mouseover && doMouseOver) attract(p)
       bounce(p)
 
       p.x += p.vx
@@ -253,17 +254,17 @@ window.onload = function () {
 
   window.onmouseup = function () {
     if (s.invMouseDown) {
-      mousedown = false
-    } else {
       mousedown = true
+    } else {
+      mousedown = false
     }
   }
 
   window.onmousedown = function () {
     if (s.invMouseDown) {
-      mousedown = true
-    } else {
       mousedown = false
+    } else {
+      mousedown = true
     }
   }
 
