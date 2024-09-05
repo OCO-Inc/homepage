@@ -1,6 +1,6 @@
 const s = {
   // Default settings
-  totalStars: 99999,
+  totalStars: 9999,
   dtMin: 10000,
   dtMax: 180000,
   velDecay: 0.985,
