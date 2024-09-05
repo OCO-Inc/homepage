@@ -29,11 +29,11 @@ let mousedown = false;
 let X, Y;
 const P = [];
 
+var button = document.createElement("settingopener");
+settingsopener.innerHTML = "Open Settings";
 button.addEventListener("click", function() {
   settingsMenu();
 });
-var button = document.createElement("settingopener");
-settingsopener.innerHTML = "Open Settings";
 
 const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   // Assembler for particles
