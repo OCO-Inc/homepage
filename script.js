@@ -1,6 +1,6 @@
 const s = {
   // Default settings
-  totalStars: 2000,
+  totalStars: 99999,
   dtMin: 10000,
   dtMax: 180000,
   velDecay: 0.985,
@@ -29,6 +29,8 @@ let mousedown = false;
 let X, Y;
 const P = [];
 
+button.addEventListener("click", function() {settingsMenu(); });
+
 const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   // Assembler for particles
   this.x = x;
@@ -40,6 +42,16 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   this.birthTime = birthTime;
   this.dt = dt;
 };
+
+function settingsMenu() {
+  var x=30, y=30, side1=canvas.width-60, side2=canvas.width-60;
+  ctx.fillStyle = "gray";
+  ctx.fillRect(x, y, side1, side2);
+
+  var button = document.createElement("settingopener"); //initialize and create text for settings
+  settingsopener.innerHTML = "Open Settings";
+
+
 
 function hexToRGB(hex) {
   const r = parseInt(hex.slice(1, 3), 16);
