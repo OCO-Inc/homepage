@@ -29,7 +29,9 @@ let mousedown = false;
 let X, Y;
 const P = [];
 
-button.addEventListener("click", function() {settingsMenu(); });
+button.addEventListener("click", function() {
+  settingsMenu();
+});
 
 const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   // Assembler for particles
@@ -50,7 +52,7 @@ function settingsMenu() {
 
   var button = document.createElement("settingopener"); //initialize and create text for settings
   settingsopener.innerHTML = "Open Settings";
-
+}
 
 
 function hexToRGB(hex) {
