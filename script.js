@@ -29,8 +29,8 @@ let mousedown = false;
 let X, Y;
 const P = [];
 
-var button = document.createElement("settingopener");
-settingsopener.innerHTML = "Open Settings";
+var button = document.createElement("settingsOpener");
+settingsOpener.innerHTML = "Open Settings";
 button.addEventListener("click", function() {
   settingsMenu();
 });
