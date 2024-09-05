@@ -32,6 +32,8 @@ const P = [];
 button.addEventListener("click", function() {
   settingsMenu();
 });
+var button = document.createElement("settingopener");
+settingsopener.innerHTML = "Open Settings";
 
 const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   // Assembler for particles
@@ -50,7 +52,6 @@ function settingsMenu() {
   ctx.fillStyle = "gray";
   ctx.fillRect(x, y, side1, side2);
 
-  var button = document.createElement("settingopener"); //initialize and create text for settings
   settingsopener.innerHTML = "Open Settings";
 }
 
