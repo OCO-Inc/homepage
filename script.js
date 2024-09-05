@@ -29,12 +29,6 @@ let mousedown = false;
 let X, Y;
 const P = [];
 
-var button = document.createElement("settingsOpener");
-settingsOpener.innerHTML = "Open Settings";
-button.addEventListener("click", function() {
-  settingsMenu();
-});
-
 const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   // Assembler for particles
   this.x = x;
@@ -136,6 +130,12 @@ function init() {
   // Populate the screen with particles using specific values
   let x, y, vx, vy, r, col, birthTime, dt;
   const particlesToAdd = s.totalStars - P.length;
+  
+  var button = document.createElement("settingsOpener");
+  button.innerHTML = "Open Settings";
+  button.addEventListener("click", function() {
+    settingsMenu();
+  });
 
   for (let i = 0; i < particlesToAdd; i++) {
     x = rand(0, canvas.width);
