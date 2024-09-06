@@ -1,4 +1,4 @@
-const s = {
+let s = {
   // Default settings
   totalStars: 2000,
   dtMin: 10000,
@@ -20,6 +20,7 @@ const s = {
   collision: true,
   death: true,
   doMouseOver: true,
+  loopRunning: true
 };
 
 const canvas = document.getElementById("canvas");
@@ -42,11 +43,11 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
 };
 
 function settingsMenu() {
+  s.loopRunning = false
   var x=30, y=30, side1=canvas.width-60, side2=canvas.width-60;
   ctx.fillStyle = "gray";
   ctx.fillRect(x, y, side1, side2);
-
-  settingsopener.innerHTML = "Open Settings";
+  
 }
 
 
@@ -136,6 +137,7 @@ function init() {
   button.addEventListener("click", function() {
     settingsMenu();
   });
+  settingsopener.innerHTML = "Open Settings";
 
   for (let i = 0; i < particlesToAdd; i++) {
     x = rand(0, canvas.width);
@@ -259,10 +261,12 @@ function draw() {
 
 function loop() {
   // Animation loop
-  bg();
-  draw();
-  init();
-  window.requestAnimationFrame(loop);
+  if (s.loopRunning == true) {
+    bg();
+    draw();
+    init();
+    window.requestAnimationFrame(loop);
+  }
 }
 
 // Code ran when the website is opened
