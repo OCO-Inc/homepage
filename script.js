@@ -256,9 +256,6 @@ function loop() {
   bg();
   draw();
   init();
-  if (s.config = true) {
-	config();
-  }
   window.requestAnimationFrame(loop);
 }
 
