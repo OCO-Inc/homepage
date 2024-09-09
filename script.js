@@ -258,7 +258,7 @@ function loop() {
   bg();
   draw();
   init();
-  if (configOn=true) { config(); }
+  if(configOn==true) { config(); }
   window.requestAnimationFrame(loop);
 }
 
@@ -302,3 +302,4 @@ window.onmouseout = function () {
 
 init();
 loop();
+  
