@@ -1,4 +1,4 @@
-let s = {
+var s = {
   // Default settings
   totalStars: 2000,
   dtMin: 10000,
@@ -43,9 +43,9 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
 };
 document.getElementById("myButton").onclick = function() {
   livelyPropertyListener(doLoop, false);
-  var x=30, y=30, side1=canvas.width-60, side2=canvas.width-60;
+  var x = 30, y = 30, width = canvas.width-60, height = canvas.height-60;
   ctx.fillStyle = "gray";
-  ctx.fillRect(x, y, side1, side2);
+  ctx.fillRect(x, y, width, height);
 };
 
 
