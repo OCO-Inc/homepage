@@ -18,9 +18,9 @@ var s = {
   spawnVel: false,
   showPrompt: true,
   collision: true,
-  death: true,
+  death: false,
   doMouseOver: true,
-  doLoop: true,
+  config: true
 };
 
 const canvas = document.getElementById("canvas");
@@ -42,12 +42,14 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   this.dt = dt;
 };
 document.getElementById("config").onclick = function() {
-  livelyPropertyListener("doLoop", false);
+  livelyPropertyListener("config", true);
+};
+
+function config() {
   var x = 30, y = 30, width = canvas.width-60, height = canvas.height-60;
   ctx.fillStyle = "gray";
   ctx.fillRect(x, y, width, height);
-};
-
+}
 
 function hexToRGB(hex) {
   const r = parseInt(hex.slice(1, 3), 16);
@@ -252,12 +254,13 @@ function draw() {
 
 function loop() {
   // Animation loop
-  if (s.doLoop = true) {
-    bg();
-	draw();
-	init();
-	window.requestAnimationFrame(loop);
+  bg();
+  draw();
+  init();
+  if (s.config = true) {
+	config()
   }
+  window.requestAnimationFrame(loop);
 }
 
 // Code ran when the website is opened
