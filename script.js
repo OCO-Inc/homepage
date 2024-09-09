@@ -1,4 +1,4 @@
-const s = {
+let s = {
   // Default settings
   totalStars: 2000,
   dtMin: 10000,
@@ -20,6 +20,7 @@ const s = {
   collision: true,
   death: true,
   doMouseOver: true,
+  doLoop: true,
 };
 
 const canvas = document.getElementById("canvas");
@@ -40,14 +41,12 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   this.birthTime = birthTime;
   this.dt = dt;
 };
-
-function settingsMenu() {
+document.getElementById("myButton").onclick = function() {
+  livelyPropertyListener(doLoop, false);
   var x=30, y=30, side1=canvas.width-60, side2=canvas.width-60;
   ctx.fillStyle = "gray";
   ctx.fillRect(x, y, side1, side2);
-
-  settingsopener.innerHTML = "Open Settings";
-}
+};
 
 
 function hexToRGB(hex) {
@@ -130,12 +129,6 @@ function init() {
   // Populate the screen with particles using specific values
   let x, y, vx, vy, r, col, birthTime, dt;
   const particlesToAdd = s.totalStars - P.length;
-  
-  var button = document.createElement("settingsOpener");
-  button.innerHTML = "Open Settings";
-  button.addEventListener("click", function() {
-    settingsMenu();
-  });
 
   for (let i = 0; i < particlesToAdd; i++) {
     x = rand(0, canvas.width);
@@ -259,10 +252,12 @@ function draw() {
 
 function loop() {
   // Animation loop
-  bg();
-  draw();
-  init();
-  window.requestAnimationFrame(loop);
+  if (s.doLoop = true) {
+    bg();
+	draw();
+	init();
+	window.requestAnimationFrame(loop);
+  }
 }
 
 // Code ran when the website is opened
