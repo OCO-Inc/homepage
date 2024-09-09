@@ -41,9 +41,8 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   this.birthTime = birthTime;
   this.dt = dt;
 };
-document.getElementById("config").onclick = function() {
-  livelyPropertyListener("config", true);
-};
+
+document.getElementById("config").onclick = livelyPropertyListener("config", true);
 
 function config() {
   var x = 30, y = 30, width = canvas.width-60, height = canvas.height-60;
@@ -259,7 +258,7 @@ function loop() {
   init();
   if (s.config = true) {
 	config()
-  }
+  };
   window.requestAnimationFrame(loop);
 }
 
