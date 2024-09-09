@@ -42,7 +42,9 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   this.dt = dt;
 };
 
-document.getElementById("config").onclick = configOn=true
+document.getElementById("config").onclick = function() {
+  configOn = true;
+};
 
 function config() {
   var x = 30, y = 30, width = canvas.width-60, height = canvas.height-60;
