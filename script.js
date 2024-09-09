@@ -41,7 +41,7 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   this.birthTime = birthTime;
   this.dt = dt;
 };
-document.getElementById("myButton").onclick = function() {
+document.getElementById("config").onclick = function() {
   livelyPropertyListener(doLoop, false);
   var x = 30, y = 30, width = canvas.width-60, height = canvas.height-60;
   ctx.fillStyle = "gray";
