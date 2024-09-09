@@ -15,8 +15,12 @@ body {
    margin: 0;
    padding: 0;
 }
-
-.grid-parent {
-  display: grid;
-  grid-template-columns: 1fr 1fr
+.row {
+  width: 100%;
+  text-align: center; 
 }
+
+.block {
+  width: 100px;
+  display: inline-block;
+}​
