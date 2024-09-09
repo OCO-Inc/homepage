@@ -20,7 +20,7 @@ var s = {
   collision: true,
   death: false,
   doMouseOver: true,
-  config: true
+  config: false
 };
 
 const canvas = document.getElementById("canvas");
