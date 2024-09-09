@@ -18,7 +18,7 @@ var s = {
   spawnVel: false,
   showPrompt: true,
   collision: true,
-  death: false,
+  death: true,
   doMouseOver: true
 };
 
@@ -47,7 +47,7 @@ document.getElementById("config").onclick = function() {
 };
 
 function config() {
-  var x = 30, y = 30, width = canvas.width-60, height = canvas.height-60;
+  var x = 300, y = 30, width = canvas.width-600, height = canvas.height-60;
   ctx.fillStyle = "gray";
   ctx.fillRect(x, y, width, height);
 }
@@ -262,7 +262,6 @@ function loop() {
   window.requestAnimationFrame(loop);
 }
 
-// Code ran when the website is opened
 window.onresize = size;
 
 size();
