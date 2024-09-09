@@ -19,8 +19,7 @@ var s = {
   showPrompt: true,
   collision: true,
   death: false,
-  doMouseOver: true,
-  config: false
+  doMouseOver: true
 };
 
 const canvas = document.getElementById("canvas");
@@ -28,6 +27,7 @@ const ctx = canvas.getContext("2d");
 let centerX, centerY;
 let mousedown = false;
 let X, Y;
+let configOn = false
 const P = [];
 
 const part = function (x, y, vx, vy, r, col, birthTime, dt) {
@@ -42,7 +42,7 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
   this.dt = dt;
 };
 
-document.getElementById("config").onclick = var configOn=true
+document.getElementById("config").onclick = configOn=true
 
 function config() {
   var x = 30, y = 30, width = canvas.width-60, height = canvas.height-60;
