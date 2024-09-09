@@ -3,7 +3,20 @@
 <head> </head>
 
 <body style="margin:0px; width:calc(100% + 30px); height:calc(100% + 30px); overflow:hidden">
-  <button id="config">Open Config</button>
+	
+	<div class='parent grid-parent'>
+    <div class='child'>
+		  <button id="config">Apply Config Code</button>
+	  </div>
+    <div class='child'>
+		  <input type="text" id="listenerInput" name="listenerInput">
+			<label for="listenerInput">Setting Name</label>
+		</div>
+		<div class='child'>
+		  <input type="text" id="listenerValue" name="listenerValue">
+			<label for="listenerValue">Setting Value</label>
+  </div>
+
   <canvas id="canvas"> </canvas>   
   <script src="script.js"> </script>
 </body>

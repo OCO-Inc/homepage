@@ -27,7 +27,7 @@ const ctx = canvas.getContext("2d");
 let centerX, centerY;
 let mousedown = false;
 let X, Y;
-let configOn = false
+// let configOn = false
 const P = [];
 
 const part = function (x, y, vx, vy, r, col, birthTime, dt) {
@@ -43,14 +43,14 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
 };
 
 document.getElementById("config").onclick = function() {
-  configOn = true;
+  livelyPropertyListener(document.getElementById("listenerInput").value;, document.getElementById("listenerValue").value;)
 };
 
-function config() {
+/* function config() {    // Do not uncomment for now
   var x = 300, y = 30, width = canvas.width-600, height = canvas.height-60;
   ctx.fillStyle = "gray";
   ctx.fillRect(x, y, width, height);
-}
+} */
 
 function hexToRGB(hex) {
   const r = parseInt(hex.slice(1, 3), 16);
@@ -258,7 +258,7 @@ function loop() {
   bg();
   draw();
   init();
-  if(configOn==true) { config(); }
+  //if(configOn==true) { config(); }
   window.requestAnimationFrame(loop);
 }
 
