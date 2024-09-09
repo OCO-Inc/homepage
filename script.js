@@ -257,8 +257,8 @@ function loop() {
   draw();
   init();
   if (s.config = true) {
-	config()
-  };
+	config();
+  }
   window.requestAnimationFrame(loop);
 }
 
