@@ -61,6 +61,8 @@ function hexToRGB(hex) {
 
 function livelyPropertyListener(name, val) {
   // Listens for Lively Wallpaper's configuration change calls
+  if (val == 'true') { val = true; }
+  if (val == 'false') { val = false; }
   if (s.hasOwnProperty(name)) {
     if (["elasticity", "velDecay"].includes(name)) {
       // for percentage
