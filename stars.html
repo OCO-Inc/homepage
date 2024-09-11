@@ -6,11 +6,33 @@
 
 <body style="margin:0px; width:calc(100% + 30px); height:calc(100% + 30px);">
   <div id="container">
-  <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; overflow: hidden" id="overlay">
-    <button id="config">Apply Config Code</button>
-    <input type="text" id="listenerInput" name="listenerInput" placeholder="Setting Name">
-    <input type="text" id="listenerValue" name="listenerValue" placeholder="Setting Value">
-  </div>
+    <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; overflow: hidden" id="overlay">
+      <button id="config">Apply</button>
+      <select name="cars" id="cars">
+			  <option value="">Select Config</option>
+  			<option value="totalStars">Number of Stars</option>
+	  		<option value="dtMin">Minimum Star Death Time (S)</option>
+	      <option value="dtMax">Maximum Star Death Time (S)</option>
+        <option value="velDecay">Time to lose velocity (%)</option>
+        <option value="rMin">Minimum Star Radius (px)</option>
+        <option value="rMax">Maximum Star Radius (px)</option>
+        <option value="rRepel">Repel Radius (px)</option>
+        <option value="rAttract">Attact Radius (px)</option>
+        <option value="repelStrength">Repel Strength (%)</option>
+        <option value="attractStrength">Attract Strength (%)</option>
+        <option value="elasticity">Bounciness (%)</option>
+        <option value="startVelAmt">Velocity Amount at Spawn (%)</option>
+        <option value="col">Color (hex)</option>
+        <option value="bgCol">Background Color (hex)</option>
+        <option value="invMouseDown">Invert Repel and Attract? (true/false)</option>
+        <option value="spawnVel">Do Spawn Velocity? (t/f)</option>
+        <option value="showPrompt">Show Instructions? (t/f)</option>
+        <option value="collision">Do Collision? (t/f)</option>
+        <option value="death">Do Star Death and Respawn (t/f)</option>
+        <option value="doMouseOver">Do Mouse Interaction (t/f)</option>
+      </select>
+      <input type="text" id="listenerValue" name="listenerValue" placeholder="Setting Value">
+    </div>
   </div>
   
   <canvas id="canvas"> </canvas>   

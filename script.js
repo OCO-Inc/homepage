@@ -19,10 +19,7 @@ var s = {
   showPrompt: true,
   collision: true,
   death: true,
-  doMouseOver: true,
-  defaultX: 0,
-  defaultY: 0,
-  doMouse: true
+  doMouseOver: true
 };
 
 const canvas = document.getElementById("canvas");
@@ -293,13 +290,6 @@ var mouseover = false;
 window.onmouseover = function () {
   mouseover = true;
 };
-
-document.body.onclick = function (e) { if (e && (e.which == 2 || e.button == 4)) { 
-  livelyPropertyListener(doMouse, false);
-  livelyPropertyListener(defaultX, e.pageX);
-  livelyPropertyListener(defaultY, e.pageY);
-  }
-}
 
 window.onmouseout = function () {
   mouseover = false;
