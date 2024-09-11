@@ -5,6 +5,7 @@
    height: 100%;
    min-height: 100%;
    width: 100%;
+   overflow: hidden;
 }
 
 #container {
@@ -21,6 +22,7 @@ canvas {
 }
 
 body {
+   overflow: hidden;
    background-color: black;
    margin: 0;
    padding: 0;
