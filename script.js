@@ -19,7 +19,10 @@ var s = {
   showPrompt: true,
   collision: true,
   death: true,
-  doMouseOver: true
+  doMouseOver: true,
+  defaultX: 0,
+  defaultY: 0,
+  doMouse: true
 };
 
 const canvas = document.getElementById("canvas");
@@ -45,12 +48,6 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
 document.getElementById("config").onclick = function() {
   livelyPropertyListener(document.getElementById("listenerInput").value, document.getElementById("listenerValue").value);
 };
-
-/* function config() {    // Do not uncomment for now
-  var x = 300, y = 30, width = canvas.width-600, height = canvas.height-60;
-  ctx.fillStyle = "gray";
-  ctx.fillRect(x, y, width, height);
-} */
 
 function hexToRGB(hex) {
   const r = parseInt(hex.slice(1, 3), 16);
@@ -271,8 +268,8 @@ Y = centerY;
 X = centerX;
 
 window.onmousemove = function (e) {
-  X = e.clientX;
-  Y = e.clientY;
+  X = e.pageX;
+  Y = e.pageY;
 };
 
 window.onmouseup = function () {
@@ -296,6 +293,13 @@ var mouseover = false;
 window.onmouseover = function () {
   mouseover = true;
 };
+
+document.body.onclick = function (e) { if (e && (e.which == 2 || e.button == 4)) { 
+  livelyPropertyListener(doMouse, false);
+  livelyPropertyListener(defaultX, e.pageX);
+  livelyPropertyListener(defaultY, e.pageY);
+  }
+}
 
 window.onmouseout = function () {
   mouseover = false;
