@@ -4,21 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<body style="margin:0px; width:calc(100% + 30px); height:calc(100% + 30px); overflow:hidden">
-  <div class='row'>
-    <div class='block'>
-      <button id="config">Apply Config Code</button>
-    </div>
-    <div class='block'>
-      <input type="text" id="listenerInput" name="listenerInput">
-      <label for="listenerInput">Setting Name</label>
-    </div>
-    <div class='block'>
-      <input type="text" id="listenerValue" name="listenerValue">
-    	<label for="listenerValue">Setting Value</label>
-    </div>
+<body style="margin:0px; width:calc(100% + 30px); height:calc(100% + 30px);">
+  <div id="container">
+  <div style="display:flex; flex-direction: row; justify-content: center; align-items: center" id="overlay">
+    <button id="config">Apply Config Code</button>
+    <input type="text" id="listenerInput" name="listenerInput">
+    <label for="listenerInput">Setting Name</label>
+    <input type="text" id="listenerValue" name="listenerValue">
+    <label for="listenerValue">Setting Value</label>
   </div>
-
+  </div>
+  
   <canvas id="canvas"> </canvas>   
   <script src="script.js"> </script>
 </body>

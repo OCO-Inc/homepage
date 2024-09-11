@@ -7,9 +7,19 @@
    width: 100%;
 }
 
-canvas {
-   cursor:none;
+#container {
+  position: relative;
 }
+
+#container canvas, #overlay {
+  position: absolute;
+}
+
+canvas {
+  cursor: none;
+  border: 1px solid black;
+}
+
 body {
    margin: 0;
    padding: 0;
@@ -23,4 +33,4 @@ body {
   vertical-align: top;
   width: 100px;
   display: inline-block;
-}​
+}
