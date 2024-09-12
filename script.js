@@ -43,7 +43,7 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
 };
 
 document.getElementById("config").onclick = function() {
-  livelyPropertyListener(document.getElementById("listenerInput").value, document.getElementById("listenerValue").value);
+  livelyPropertyListener(document.getElementById("listenerName").value, document.getElementById("listenerValue").value);
 };
 
 function hexToRGB(hex) {
