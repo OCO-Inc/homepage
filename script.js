@@ -140,6 +140,10 @@ function init() {
   let x, y, vx, vy, r, col, birthTime, dt;
   const particlesToAdd = s.totalStars - P.length;
 
+  if (s.nigelMode = true) {
+    livelyPropertyListener(col, "#990000");
+    livelyPropertyListener(bgCol, "#ff4d94");
+
   for (let i = 0; i < particlesToAdd; i++) {
     x = rand(0, canvas.width);
     y = rand(0, canvas.height);
@@ -219,7 +223,7 @@ function draw() {
   if (s.showPrompt) {
     ctx.fillStyle = "white"; // Instruction text
     ctx.font = "12px caption";
-    if (s.nigelMode) { ctx.fillStyle = "red"; ctx.font = "300px caption"; ctx.fillText("FUCK YOU", 10, 10); }
+    if (s.nigelMode) { ctx.fillStyle = "red"; ctx.font = "300px caption"; ctx.fillText("FUCK YOU", 10, 1000); }
     else { ctx.fillText("Move your mouse around to collect stars, and click to release them!", 10, 10); }
   }
 
