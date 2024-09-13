@@ -143,6 +143,7 @@ function init() {
   if (s.nigelMode = true) {
     livelyPropertyListener(col, "#990000");
     livelyPropertyListener(bgCol, "#ff4d94");
+  }
 
   for (let i = 0; i < particlesToAdd; i++) {
     x = rand(0, canvas.width);
@@ -310,4 +311,3 @@ window.onmouseout = function () {
 
 init();
 loop();
-  
