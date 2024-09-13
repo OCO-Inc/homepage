@@ -20,7 +20,8 @@ var s = {
   collision: true,
   death: true,
   doMouseOver: true,
-  nigelMode: false
+  nigelMode: false,
+  rainbowMode: false
 };
 
 const canvas = document.getElementById("canvas");
@@ -120,6 +121,9 @@ function rand(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+const hexRand = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+
+
 function size() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -158,7 +162,8 @@ function init() {
     }
     r = logRand(s.rMin, s.rMax)
 
-    col = s.col;
+    if (s.rainbowMode) { col = hexRand(6); }
+    else { col = s.col; }
     birthTime = Date.now();
     dt = rand(s.dtMin, s.dtMax);
 
