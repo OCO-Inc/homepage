@@ -121,8 +121,14 @@ function rand(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-const hexRand = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
-
+function hexRand(len) {
+  const hex = '0123456789ABCDEF';
+  let output = '';
+  for (let i = 0; i < len; ++i) {
+    output += hex.charAt(Math.floor(Math.random() * hex.length));
+  }
+  return output;
+} 
 
 function size() {
   canvas.width = window.innerWidth;
@@ -152,7 +158,6 @@ function init() {
   for (let i = 0; i < particlesToAdd; i++) {
     x = rand(0, canvas.width);
     y = rand(0, canvas.height);
-
     if (s.spawnVel) {
       vx = rand(-Math.abs(s.startVelAmt), Math.abs(s.startVelAmt));
       vy = rand(-Math.abs(s.startVelAmt), Math.abs(s.startVelAmt));
@@ -162,8 +167,12 @@ function init() {
     }
     r = logRand(s.rMin, s.rMax)
 
-    if (s.rainbowMode) { col = hexRand(6); }
-    else { col = s.col; }
+    if (s.rainbowMode) {
+      let col = hexRand(6);
+    } else {
+      let col = s.col;
+    };
+    
     birthTime = Date.now();
     dt = rand(s.dtMin, s.dtMax);
 
