@@ -127,9 +127,11 @@ function size() {
 }
 
 function logRand(min, max) {
-  let random = Math.random();
-  let logRandom = Math.log(random + 1) / Math.log(2);
-  return min + (max - min) * logRandom;
+    let u = Math.random();
+    let logMin = Math.log(min);
+    let logMax = Math.log(max);
+    let logValue = logMin + u * (logMax - logMin);
+    return Math.floor(Math.exp(logValue));
 }
 
 function init() {
