@@ -140,10 +140,7 @@ function init() {
       vx = 0;
       vy = 0;
     }
-    r = rand(s.rMin, s.rMax / 2);
-    if (r > s.rMax / 2.8) {
-      r = rand(s.rMin, s.rMax);
-    }
+    r = rand(s.rMin, s.rMax);
 
     col = s.col;
     birthTime = Date.now();
