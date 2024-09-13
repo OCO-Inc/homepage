@@ -124,6 +124,12 @@ function size() {
   centerY = canvas.height / 2;
 }
 
+function logRand(min, max) {
+  let random = Math.random();
+  let logRandom = Math.log(random + 1) / Math.log(2);
+  return min + (max - min) * logRandom;
+}
+
 function init() {
   // Populate the screen with particles using specific values
   let x, y, vx, vy, r, col, birthTime, dt;
@@ -140,7 +146,7 @@ function init() {
       vx = 0;
       vy = 0;
     }
-    r = rand(s.rMin, s.rMax);
+    r = logRand(s.rMin, s.rMax)
 
     col = s.col;
     birthTime = Date.now();
