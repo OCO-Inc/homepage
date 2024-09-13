@@ -167,11 +167,12 @@ function init() {
     }
     r = logRand(s.rMin, s.rMax)
 
-    if (s.rainbowMode) {
-      let col = hexRand(6);
-    } else {
-      let col = s.col;
-    };
+    if (s.rainbowMode == true) {
+      col = hexRand(6);
+    }
+    if (s.rainbowMode == false) {
+      col = s.col;
+    }
     
     birthTime = Date.now();
     dt = rand(s.dtMin, s.dtMax);
