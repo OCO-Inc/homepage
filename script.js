@@ -44,6 +44,8 @@ const part = function (x, y, vx, vy, r, col, birthTime, dt) {
 
 document.getElementById("config").onclick = function() {
   livelyPropertyListener(document.getElementById("listenerName").value, document.getElementById("listenerValue").value);
+  P.splice(0, P.length);
+  init();
 };
 
 function hexToRGB(hex) {
@@ -224,7 +226,7 @@ function draw() {
     if (s.death) {
       const age = currentTime - p.birthTime; // Kill any particles who should be dead
       if (age > p.dt) {
-        P.splice(i, 1);
+        P.splice(i, 1); 
         continue;
       }
     }
