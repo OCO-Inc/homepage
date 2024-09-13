@@ -141,8 +141,8 @@ function init() {
   const particlesToAdd = s.totalStars - P.length;
 
   if (s.nigelMode = true) {
-    livelyPropertyListener(col, "#990000");
-    livelyPropertyListener(bgCol, "#ff4d94");
+    livelyPropertyListener("col", "#990000");
+    livelyPropertyListener("bgCol", "#ff4d94");
   }
 
   for (let i = 0; i < particlesToAdd; i++) {
