@@ -19,7 +19,8 @@ var s = {
   showPrompt: true,
   collision: true,
   death: true,
-  doMouseOver: true
+  doMouseOver: true,
+  nigelMode: false
 };
 
 const canvas = document.getElementById("canvas");
@@ -66,7 +67,7 @@ function livelyPropertyListener(name, val) {
     }
     if (["dtMin", "dtMax"].includes(name)) {
       // for time in seconds
-      val = val * 1000;
+      val = val * 1000; 
     }
     if (["col", "bgCol"].includes(name)) {
       // for hex color
@@ -218,7 +219,8 @@ function draw() {
   if (s.showPrompt) {
     ctx.fillStyle = "white"; // Instruction text
     ctx.font = "12px caption";
-    ctx.fillText("Move your mouse around to collect stars, and click to release them!", 10, 10);
+    if (s.nigelMode) { ctx.fillStyle = "red"; ctx.font = "300px caption"; ctx.fillText("FUCK YOU", 10, 10); }
+    else { ctx.fillText("Move your mouse around to collect stars, and click to release them!", 10, 10); }
   }
 
   for (let i = P.length - 1; i >= 0; i--) {

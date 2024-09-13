@@ -18,6 +18,7 @@
 
 canvas {
   cursor: none;
+  overflow: hidden;
   border: 1px solid black;
 }
 
@@ -37,9 +38,3 @@ body {
   width: 100px;
   display: inline-block;
 }
-
-/* hide page scrollbar */
-html { scrollbar-width: none; } /* Firefox */
-body { -ms-overflow-style: none; } /* IE and Edge */
-body::-webkit-scrollbar, body::-webkit-scrollbar-button { display: none; } /* Chrome */
-/* end hide page scrollbar */
