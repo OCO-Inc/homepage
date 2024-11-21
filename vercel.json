@@ -2,6 +2,6 @@
   "rewrites": [
     { "source": "/stars", "destination": "/stars.html" },
     { "source": "/lively", "destination": "/stars.html" },
-    { "source": "/rat", "destination": "/rat.html" }
+    { "source": "/qwikstek", "destination": "/qwikstek.html" }
   ]
 }

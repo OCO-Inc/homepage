@@ -1,0 +1,15 @@
+body {
+  background-color: black;
+}
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+p {
+  font-family: "Monaco", "Courier New", monospace;
+  font-size: 12px;
+  color: white;
+  text-align: center;
+}
