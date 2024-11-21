@@ -13,6 +13,9 @@ p {
   text-align: center;
 }
 
+a {
+  target: _self;
+
 /* Add a black background color to the top navigation */
 .topnav {
   background-color: #333;
