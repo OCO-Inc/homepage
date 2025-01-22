@@ -1,15 +1,17 @@
-if (window.innerWidth < window.innerHeight) {
-  document.getElementById("sides").style.width = window.innerWidth;
-  document.getElementById("count").style.width = window.innerWidth;
-  document.getElementById("sides").style.height = window.innerHeight/8;
-  document.getElementById("count").style.height = window.innerHeight/8;
-} else {
-  document.getElementById("sides").style.width = window.innerWidth/3;
-  document.getElementById("count").style.width = window.innerWidth/3;
-  document.getElementById("sides").style.height = window.innerHeight/8;
-  document.getElementById("count").style.height = window.innerHeight/8;
+function width() {
+  if (window.innerWidth < window.innerHeight) {
+    document.getElementById("sides").style.width = window.innerWidth;
+    document.getElementById("count").style.width = window.innerWidth;
+    document.getElementById("sides").style.height = window.innerHeight/8;
+    document.getElementById("count").style.height = window.innerHeight/8;
+  } else {
+    document.getElementById("sides").style.width = window.innerWidth/3;
+    document.getElementById("count").style.width = window.innerWidth/3;
+    document.getElementById("sides").style.height = window.innerHeight/8;
+    document.getElementById("count").style.height = window.innerHeight/8;
+  }
 }
-  
+
 var sides = new Slider("slider", {
 			orientation: "horizontal",
 			autoReturnToCenter: true,
@@ -37,6 +39,11 @@ count.on("change", (e)=>{
     render()
 });
 
-function Render() {
+width()
+
+
+
+function render() {
+  width()
   document.getElementById("test").style.visibility = "visible";
 }
