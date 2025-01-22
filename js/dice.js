@@ -13,10 +13,10 @@ var count = document.getElementById("count");
 var coutput = document.getElementById("cvalue");
 var soutput = document.getElementById("svalue");
 
-coutput.oninput = function() {
+count.oninput = function() {
   coutput.innerHTML = this.value;
 }
-soutput.oninput = function() {
+sides.oninput = function() {
   soutput.innerHTML = this.value;
 }
 
