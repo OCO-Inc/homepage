@@ -3,14 +3,14 @@ body {
 }
 h1 {
   color: white;
-  text-align: center;
+  text-align: left;
   font-size: 24px;
   font-family: "Lucida Console", "Courier New", monospace;
 }
 p {
   font-size: 16px;
   color: white;
-  text-align: center;
+  text-align: left;
 }
 h2 {
   color: white;
