@@ -1,3 +1,6 @@
+//definitions
+const roll = [];
+
 function loop() { // updates display and graph every frame @ 60fps
   display();
   window.requestAnimationFrame(loop);
@@ -20,8 +23,5 @@ function roll() { // actually roll the dice. called when the "roll" button is cl
   }
   document.getElementById("rolls").innerText = roll
 }
-
-//definitions
-const roll = [];
 
 loop(); //start here
