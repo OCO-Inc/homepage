@@ -10,8 +10,8 @@
 
 var sides = document.getElementById("sides");
 var count = document.getElementById("count");
-var coutput = document.getElementById("cvalue");
-var soutput = document.getElementById("svalue");
+var coutput = document.getElementById("coutput");
+var soutput = document.getElementById("soutput");
 
 count.oninput = function() {
   coutput.innerHTML = this.value;
