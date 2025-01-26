@@ -21,10 +21,13 @@
 <body>
   <noscript> You must enable JavaScript to view this webpage. </noscript>
   <h1> Orin Annis' Dice
-  <p> Sides of dice:</p> <p id="sidesout"></p>
-  <div id="slidecontainer" style="width: 400px; height: 30px;"> <input type="range" min="1" max="20" value="6" class="slider" id="sides"> </div>
+  <p> Sides on each die:</p> <p id="sidesout"></p>
+  <div id="slidecontainer" style="width: 800px; height: 30px;"> <input type="range" min="1" max="20" value="6" class="slider" id="sides"> </div>
   <p> Number of dice:</p> <p id="countout"></p>
-  <div id="slidecontainer" style="width: 400px; height: 30px;"> <input type="range" min="1" max="20" value="6" class="slider" id="count"> </div>
+  <div id="slidecontainer" style="width: 800px; height: 30px;"> <input type="range" min="1" max="100" value="2" class="slider" id="count"> </div>
+  <p> Times to roll (1 to disable graphing)</p> <p id="timesout"></p>
+  <div id="slidecontainer" style="width: 800px; height: 30px;"> <input type="range" min="1" max="100" value="1" class="slider" id="times"> </div>
+
   <script src="js/dice.js"> </script>
 </body>
 </html>
