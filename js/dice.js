@@ -13,7 +13,7 @@ function display() { // update the labels of each slider
 }
 
 function random (min, max) { // simple random function, returns between min and max inclusive
-  return Math.random() * (max - min) + min;
+  return Math.round(Math.random() * (max - min) + min);
 }
 
 function roll() { // actually roll the dice. called when the "roll" button is clicked
