@@ -1,5 +1,5 @@
 //definitions
-const roll = [];
+const rollList = [];
 
 function loop() { // updates display and graph every frame @ 60fps
   display();
