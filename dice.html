@@ -14,7 +14,7 @@
   <meta name="author" content="Orin Annis">
   
   <style> p {font-family: "Roboto", serif;}</style>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
   <base href="https://qwikster.dev/" target="_blank">
 </head>
 
@@ -27,10 +27,9 @@
   <div id="slidecontainer" style="width: 800px; height: 30px;"> <input type="range" min="1" max="100" value="2" class="slider" id="count"> </div>
   <p> Times to roll (1 to disable graphing)</p> <p id="timesout"></p>
   <div id="slidecontainer" style="width: 800px; height: 30px;"> <input type="range" min="1" max="100" value="1" class="slider" id="times"> </div>
-  <button type="button" class="button button1" id="roll" onclick="roll()"><b>Roll!</b></button>
-  <br>
-  <p id="rolls"> </p>
-
+  <br><br><button type="button" class="button button1" id="roll" onclick="roll()"><b>Roll!</b></button>
+  <br><p id="rolls"> </p>
+  <br><canvas id="graph" style="width:100%;max-width:700px"></canvas>
   <script src="js/dice.js"> </script>
 </body>
 </html>
