@@ -19,7 +19,7 @@ function random (min, max) { // simple random function, returns between min and 
 function roll() { // actually roll the dice. called when the "roll" button is clicked
   rollList.length = 0 // ensure the list of dice rolls already completed is 0
   for (let i = 0; i < (document.getElementById("times").value * document.getElementById("count").value); i++) { // repeat the folowing (number of dice * times to roll) times
-    rollList.push(random(1, document.getElementById("sides"))) // roll once for each time it is told and add it to the list of rolls
+    rollList.push(random(1, document.getElementById("sides").value)) // roll once for each time it is told and add it to the list of rolls
   }
   document.getElementById("rolls").innerText = rollList
 }
