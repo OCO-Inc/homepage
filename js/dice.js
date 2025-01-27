@@ -13,6 +13,7 @@ function display() { // update the labels of each slider
   document.getElementById('timesout').innerText = document.getElementById("times").value;
   if (document.getElementById('sides').value == 2) {
     document.getElementById('count').value = 1; // If this had a higher count it would screw over our later code as heads cannot be added to heads to create ULTRA HEADS
+  }
 }
 
 // simple random function, returns between min and max inclusive
