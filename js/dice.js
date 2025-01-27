@@ -1,5 +1,5 @@
 //definitions
-let rollList = [];
+const rollList = [];
 var chart;
 
 function loop() { // updates display and graph every frame @ 60fps
@@ -11,6 +11,8 @@ function display() { // update the labels of each slider
   document.getElementById('sidesout').innerText = document.getElementById("sides").value;
   document.getElementById('countout').innerText = document.getElementById("count").value;
   document.getElementById('timesout').innerText = document.getElementById("times").value;
+  if (document.getElementById('sides').value == 2) {
+    document.getElementById('count'.value = 1; // If this had a higher count it would screw over our later code as heads cannot be added to heads to create ULTRA HEADS
 }
 
 // simple random function, returns between min and max inclusive
@@ -25,8 +27,10 @@ function roll() { // actually roll the dice. called when the "roll" button is cl
   for (let i = 0; i < document.getElementById("times").value; i++) { // repeat the folowing (number of dice * times to roll) times
     rollList.push(random(1, (document.getElementById("sides").value * document.getElementById("count").value))) // roll once for each time it is told and add it to the list of rolls
   }
-  if (document.getElementById('sides').value = 2) {
-    var rollList = rollList.map(num => (num === 1 ? 'H' : 'T'));
+  if (document.getElementById('sides').value == 2) {
+    const sortList = rollList.map(num => (num === 1 ? 'H' : 'T')); // if you're looking for heads or tails, make them identifiable
+  } else {
+    const sortList = [...rollList]; // copy contents of roll list into sorted list if nothing happened
   }
   render();
 }
@@ -45,7 +49,7 @@ function countOccurrences(arr) { //Function to generate the data we need for the
   // Create an array of counts for each number from min to max
   const result = [];
   for (let i = 1; i <= max; i++) {
-    result.push(countMap[i] || 0); // If the number isn't present, add 0
+    result.push(countMap[i] || 0); // If the number isn't present, add 0 in its place
   }
 
   return result;
@@ -57,7 +61,7 @@ function render() { //generate information and show our graph
   } else {
     var xValues = ["H", "T"] // for coins
   }
-  let yValues = countOccurrences(rollList); // use the function we made earlier to generate our data
+  let yValues = countOccurrences(sortList); // use the function we made earlier to generate our data
   if (chart) { chart.destroy(); } //to prevent the old graph from glitching through weirdly
   chart = new Chart("graph", {
     type: "bar",
