@@ -47,13 +47,13 @@ function countOccurrences(arr) { //Function to generate the data we need for the
 
 function render() { //generate information and show our graph
   var xValues = Array.from({ length: document.getElementById("sides").value }, (_, i) => (i + 1).toString()); // some really weird logic that generates the X axis labels for our chart
-  let yValues = countOccurrences(rollList); //use the function we made earlier to generate our data
+  let yValues = countOccurrences(rollList); // use the function we made earlier to generate our data
   const chart = new Chart("graph", {
     type: "bar",
     data: {
       labels: xValues,
       datasets: [{
-        backgroundColor: aqua,
+        backgroundColor: '#00FFFF',
         data: yValues
       }]
     },
@@ -65,6 +65,8 @@ function render() { //generate information and show our graph
       }
     }
   });
+  document.getElementById("rolls").innerText = rollList
+  document.getElementById("sorted").innerText = yValues
 }
 
 loop(); //start here
