@@ -60,6 +60,11 @@ function render() { //generate information and show our graph
       }]
     },
     options: {
+      scales: {
+        y: {
+          min: 0
+        }
+      },
       legend: {display: false},
       title: {
         display: true,
