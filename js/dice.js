@@ -34,12 +34,11 @@ function countOccurrences(arr) { //Function to generate the data we need for the
   });
 
   // Determine the range of numbers (from min to max)
-  const min = Math.min(...arr);
   const max = Math.max(...arr);
 
   // Create an array of counts for each number from min to max
   const result = [];
-  for (let i = min; i <= max; i++) {
+  for (let i = 1; i <= max; i++) {
     result.push(countMap[i] || 0); // If the number isn't present, add 0
   }
 
@@ -62,7 +61,7 @@ function render() { //generate information and show our graph
     options: {
       scales: {
         y: {
-          min: 0
+          beginAtZero: tru
         }
       },
       legend: {display: false},
