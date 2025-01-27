@@ -1,6 +1,6 @@
 //definitions
-const rollList = [];
-const sortList = [];
+var rollList = [];
+var sortList = [];
 var chart;
 
 function loop() { // updates display and graph every frame @ 60fps
