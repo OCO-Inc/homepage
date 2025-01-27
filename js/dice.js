@@ -22,9 +22,11 @@ function random(min, max) {
 
 function roll() { // actually roll the dice. called when the "roll" button is clicked
   rollList.length = 0 // ensure the list of dice rolls already completed is 0
-  for (let i = 0; i < (document.getElementById("times").value * document.getElementById("count").value); i++) { // repeat the folowing (number of dice * times to roll) times
-    rollList.push(random(1, document.getElementById("sides").value)) // roll once for each time it is told and add it to the list of rolls
+  for (let i = 0; i < document.getElementById("times").value; i++) { // repeat the folowing (number of dice * times to roll) times
+    rollList.push(random(1, (document.getElementById("sides").value * document.getElementById("count").value))) // roll once for each time it is told and add it to the list of rolls
   }
+  if (document.getElementById('sides').value = 2) {
+    const rollList = rollList.map(num => (num === 1 ? 'H' : 'T'));
   render();
 }
 
@@ -49,7 +51,11 @@ function countOccurrences(arr) { //Function to generate the data we need for the
 }
 
 function render() { //generate information and show our graph
-  var xValues = Array.from({ length: document.getElementById("sides").value }, (_, i) => (i + 1).toString()); // some really weird logic that generates the X axis labels for our chart
+  if (document.getElementById("sides") != 2) {
+    var xValues = Array.from({ length: document.getElementById("sides").value }, (_, i) => (i + 1).toString()); // some really weird logic that generates the X axis labels for our chart
+  } else {
+    var xValues = ["H", "T"] // for coins
+  }
   let yValues = countOccurrences(rollList); // use the function we made earlier to generate our data
   if (chart) { chart.destroy(); } //to prevent the old graph from glitching through weirdly
   chart = new Chart("graph", {
