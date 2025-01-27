@@ -60,14 +60,17 @@ function countOccurrences(arr) { //Function to generate the data we need for the
 }
 
 function render() { //generate information and show our graph
-  if (document.getElementById("sides") != 2) {
-    var xValues = Array.from({ length: document.getElementById("sides").value }, (_, i) => (i + 1).toString()); // some really weird logic that generates the X axis labels for our chart
+  if (document.getElementById("sides") == 2) {
+    xValues = ["H", "T"] // for coins
   } else {
-    var xValues = ["H", "T"] // for coins
+    xValues = Array.from({ length: document.getElementById("sides").value }, (_, i) => (i + 1).toString()); // some really weird logic that generates the X axis labels for our chart
   }
   let yValues = countOccurrences(sortList); // use the function we made earlier to generate our data
   if (chart) { chart.destroy(); } //to prevent the old graph from glitching through weirdly
   console.log(xValues)
+  console.log(yValues)
+  console.log(rollList)
+  console.log(sortList)
   chart = new Chart("graph", {
     type: "bar",
     data: {
