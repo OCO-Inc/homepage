@@ -74,8 +74,6 @@ function render() { //generate information and show our graph
       legend: {display: false}
     }
   });
-  document.getElementById("rolls").innerText = rollList
-  document.getElementById("sorted").innerText = yValues
 }
 
 loop(); //start here
