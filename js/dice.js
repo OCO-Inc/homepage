@@ -68,30 +68,31 @@ function render() { //generate information and show our graph
   chart = new Chart("graph", {
     type: "bar",
     data: {
-      labels: xValues,
-      datasets: [{
-        backgroundColor: '#00FFFF',
-        data: yValues
-      }]
+        labels: xValues,
+        datasets: [{
+            backgroundColor: '#00FFFF',
+            data: yValues
+        }]
     },
     options: {
       responsive: true,
       scales: {
         y: {
-          beginAtZero: true,  // Ensures Y-axis starts at 0
-          min: 0, // Explicitly force minimum to be 0
-          ticks: {
-            callback: function(value) {
-              return value; // Adjust if you want custom tick behavior
-            }
+          beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                // make sure it only shows integers on the Y axis label
+                return Number.isInteger(value) ? value : '';
+                }
+              }
           }
-        }
       },
       plugins: {
-        legend: {display: false}
+          legend: { display: false }
       },
     }
   });
+
 }
 
 loop(); //start here
