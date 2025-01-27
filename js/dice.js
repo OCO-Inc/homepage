@@ -1,5 +1,6 @@
 //definitions
 const rollList = [];
+let chart;
 
 function loop() { // updates display and graph every frame @ 60fps
   display();
@@ -49,7 +50,7 @@ function render() { //generate information and show our graph
   var xValues = Array.from({ length: document.getElementById("sides").value }, (_, i) => (i + 1).toString()); // some really weird logic that generates the X axis labels for our chart
   let yValues = countOccurrences(rollList); // use the function we made earlier to generate our data
   if (chart) { chart.destroy(); } //to prevent the old graph from glitching through weirdly
-  const chart = new Chart("graph", { // Create the chart (this is defined in a library included in the HTML)
+  chart = new Chart("graph", { // Create the chart (this is defined in a library included in the HTML)
     type: "bar",
     data: {
       labels: xValues,
