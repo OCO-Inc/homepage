@@ -64,7 +64,6 @@ function render() { //generate information and show our graph
   console.log(xValues)
   console.log(yValues)
   console.log(rollList)
-  console.log(sortList)
   chart = new Chart("graph", {
     type: "bar",
     data: {
