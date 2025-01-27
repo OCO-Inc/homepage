@@ -2,6 +2,8 @@
 var rollList = [];
 var sortList = [];
 var chart;
+var xValues;
+var yValues;
 
 function loop() { // updates display and graph every frame @ 60fps
   display();
@@ -65,6 +67,7 @@ function render() { //generate information and show our graph
   }
   let yValues = countOccurrences(sortList); // use the function we made earlier to generate our data
   if (chart) { chart.destroy(); } //to prevent the old graph from glitching through weirdly
+  console.log(xValues)
   chart = new Chart("graph", {
     type: "bar",
     data: {
