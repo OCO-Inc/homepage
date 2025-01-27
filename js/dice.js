@@ -1,5 +1,6 @@
 //definitions
 const rollList = [];
+const sortList = [];
 var chart;
 
 function loop() { // updates display and graph every frame @ 60fps
@@ -29,9 +30,9 @@ function rollDice() { // actually roll the dice. called when the "roll" button i
     rollList.push(random(1, (document.getElementById("sides").value * document.getElementById("count").value))) // roll once for each time it is told and add it to the list of rolls
   }
   if (document.getElementById('sides').value == 2) {
-    const sortList = rollList.map(num => (num === 1 ? 'H' : 'T')); // if you're looking for heads or tails, make them identifiable
+    sortList = rollList.map(num => (num === 1 ? 'H' : 'T')); // if you're looking for heads or tails, make them identifiable
   } else {
-    const sortList = [...rollList]; // copy contents of roll list into sorted list if nothing happened
+    sortList = [...rollList]; // copy contents of roll list into sorted list if nothing happened
   }
   render();
 }
