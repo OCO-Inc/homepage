@@ -48,7 +48,8 @@ function countOccurrences(arr) { //Function to generate the data we need for the
 function render() { //generate information and show our graph
   var xValues = Array.from({ length: document.getElementById("sides").value }, (_, i) => (i + 1).toString()); // some really weird logic that generates the X axis labels for our chart
   let yValues = countOccurrences(rollList); // use the function we made earlier to generate our data
-  const chart = new Chart("graph", {
+  const chart = null //to prevent the old graph from glitching weirdly
+  const chart = new Chart("graph", { // Create the chart (this is defined in a library included in the HTML)
     type: "bar",
     data: {
       labels: xValues,
