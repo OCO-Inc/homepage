@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <title>Configurable Dice!</title>
+	
   <link rel="icon" type="image/png" href="/img/favicon.png?">
   <link rel="stylesheet" href="css/dice.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,15 +20,20 @@
 
 <body>
   <noscript> You must enable JavaScript to view this webpage. </noscript>
+	
   <p> Sides on each die (2 for coin):</p> <p id="sidesout"></p>
   <div id="slidecontainer" style="width: 800px; height: 30px;"> <input type="range" min="2" max="20" value="6" class="slider" id="sides"> </div>
+
   <p> Number of dice:</p> <p id="countout"></p>
   <div id="slidecontainer" style="width: 800px; height: 30px;"> <input type="range" min="1" max="10" value="1" class="slider" id="count"> </div>
+
   <p> Times to roll:</p> <p id="timesout"></p>
   <div id="slidecontainer" style="width: 800px; height: 30px;"> <input type="range" min="1" max="100" value="1" class="slider" id="times"> </div>
+
   <br><br><button type="button" class="button button1" id="roll" onclick="rollDice()"><b>Roll!</b></button>
   <br><canvas id="graph" style="width:100%;max-width:800px;height:100%;max-height:400px"></canvas>
 	<br> <p>View Source: <a href="https://qwikster.dev/txt/dice.html.txt">Page (HTML)</a> | <a href="https://www.qwikster.dev/js/dice.js">Script (JavaScript)</a> | <a href="https://www.qwikster.dev/css/dice.css">Style (CSS)</a> </p>
+
   <script src="js/dice.js"> </script>
 </body>
 </html>
