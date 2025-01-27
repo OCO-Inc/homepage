@@ -71,14 +71,9 @@ function render() { //generate information and show our graph
           }
         }
       },
-      legend: {display: false},
-      title: {
-        display: true,
-        text: "Graph of Resulting Rolls"
-      }
+      legend: {display: false}
     }
   });
-  console.log(Chart.version);
   document.getElementById("rolls").innerText = rollList
   document.getElementById("sorted").innerText = yValues
 }
