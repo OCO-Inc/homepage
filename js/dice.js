@@ -1,6 +1,5 @@
 //definitions
 var rollList = [];
-var sortList = [];
 var chart;
 var xValues;
 var yValues;
@@ -60,7 +59,7 @@ function render() { //generate information and show our graph
   } else {
     xValues = Array.from({ length: document.getElementById("sides").value }, (_, i) => (i + 1).toString()); // some really weird logic that generates the X axis labels for our chart
   }
-  let yValues = countOccurrences(sortList); // use the function we made earlier to generate our data
+  let yValues = countOccurrences(rollList); // use the function we made earlier to generate our data
   if (chart) { chart.destroy(); } //to prevent the old graph from glitching through weirdly
   console.log(xValues)
   console.log(yValues)
