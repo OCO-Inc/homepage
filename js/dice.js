@@ -27,8 +27,12 @@ function random(min, max) {
 
 function rollDice() { // actually roll the dice. called when the "roll" button is clicked
   rollList.length = 0 // ensure the list of dice rolls already completed is 0
-  for (let i = 0; i < document.getElementById("times").value; i++) { // repeat the folowing (number of dice * times to roll) times
-    rollList.push(random(1, (document.getElementById("sides").value * document.getElementById("count").value))) // roll once for each time it is told and add it to the list of rolls
+  for (let i = 0; i < document.getElementById("times").value; i++) {
+    let rollSum = 0;
+    for (let j = 0; j < document.getElementById("count").value; j++) {
+      rollSum += random(1, document.getElementById("sides").value);
+    }
+    rollList.push(rollSum);
   }
   render();
 }
