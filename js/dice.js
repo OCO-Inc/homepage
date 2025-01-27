@@ -14,7 +14,7 @@ function display() { // update the labels of each slider
 }
 
 // simple random function, returns between min and max inclusive
-function getRandomInt(min, max) {
+function random(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
