@@ -13,8 +13,11 @@ function display() { // update the labels of each slider
   document.getElementById('timesout').innerText = document.getElementById("times").value;
 }
 
-function random (min, max) { // simple random function, returns between min and max inclusive
-  return Math.round(Math.random() * (max - min) + min);
+// simple random function, returns between min and max inclusive
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function roll() { // actually roll the dice. called when the "roll" button is clicked
