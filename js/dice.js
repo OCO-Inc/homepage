@@ -1,6 +1,6 @@
 //definitions
-const rollList = [];
-let chart;
+let rollList = [];
+var chart;
 
 function loop() { // updates display and graph every frame @ 60fps
   display();
@@ -26,7 +26,8 @@ function roll() { // actually roll the dice. called when the "roll" button is cl
     rollList.push(random(1, (document.getElementById("sides").value * document.getElementById("count").value))) // roll once for each time it is told and add it to the list of rolls
   }
   if (document.getElementById('sides').value = 2) {
-    const rollList = rollList.map(num => (num === 1 ? 'H' : 'T'));
+    var rollList = rollList.map(num => (num === 1 ? 'H' : 'T'));
+  }
   render();
 }
 
