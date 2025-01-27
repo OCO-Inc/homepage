@@ -61,7 +61,7 @@ function render() { //generate information and show our graph
     options: {
       scales: {
         y: {
-          beginAtZero: tru
+          beginAtZero: true
         }
       },
       legend: {display: false},
