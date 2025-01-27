@@ -49,7 +49,7 @@ function render() { //generate information and show our graph
   var xValues = Array.from({ length: document.getElementById("sides").value }, (_, i) => (i + 1).toString()); // some really weird logic that generates the X axis labels for our chart
   let yValues = countOccurrences(rollList); // use the function we made earlier to generate our data
   if (chart) { chart.destroy(); } //to prevent the old graph from glitching through weirdly
-  chart = new Chart("graph", { // Create the chart (this is defined in a library included in the HTML)
+  chart = new Chart("graph", {
     type: "bar",
     data: {
       labels: xValues,
@@ -59,9 +59,16 @@ function render() { //generate information and show our graph
       }]
     },
     options: {
+      responsive: true,
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,  // Ensures Y-axis starts at 0
+          min: 0, // Explicitly force minimum to be 0
+          ticks: {
+            callback: function(value) {
+              return value; // Adjust if you want custom tick behavior
+            }
+          }
         }
       },
       legend: {display: false},
@@ -71,6 +78,7 @@ function render() { //generate information and show our graph
       }
     }
   });
+  console.log(Chart.version);
   document.getElementById("rolls").innerText = rollList
   document.getElementById("sorted").innerText = yValues
 }
