@@ -57,7 +57,7 @@ function render() { //generate information and show our graph
   if (document.getElementById("sides").value == 2) {
     xValues = ['H', 'T']; // for coins
   } else {
-    xValues = Array.from({ length: document.getElementById("sides").value }, (_, i) => (i + 1).toString()); // some really weird logic that generates the X axis labels for our chart
+    xValues = Array.from({ length: (document.getElementById("sides").value * document.getElementById("count").value) }, (_, i) => (i + 1).toString()); // some really weird logic that generates the X axis labels for our chart
   }
   let yValues = countOccurrences(rollList); // use the function we made earlier to generate our data
   if (chart) { chart.destroy(); } //to prevent the old graph from glitching through weirdly
