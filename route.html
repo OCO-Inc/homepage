@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Optimizer</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #map { height: 500px; width: 100%; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Route Optimizer</h2>
+    <label for="timeLimit">Total Available Time (minutes):</label>
+    <input type="number" id="timeLimit" value="180"><br>
+    <button onclick="addLocationInput()">Add Location</button>
+    <div id="locations"></div>
+    <button onclick="calculateRoute()">Optimize Route</button>
+    <div id="map"></div>
+    <script>
+        let locations = [];
+        function addLocationInput() {
+            const div = document.createElement("div");
+            div.innerHTML = `
+                <input type="text" placeholder="Address" class="address">
+                <input type="number" placeholder="Task Time (minutes)" class="taskTime">
+                <input type="number" placeholder="Point Value" class="pointValue">
+                <button onclick="this.parentNode.remove()">Remove</button>
+            `;
+            document.getElementById("locations").appendChild(div);
+        }
+        function calculateRoute() {
+            const timeLimit = parseInt(document.getElementById("timeLimit").value) + 60;
+            locations = [];
+            document.querySelectorAll("#locations div").forEach(div => {
+                const address = div.querySelector(".address").value;
+                const taskTime = parseInt(div.querySelector(".taskTime").value);
+                const pointValue = parseInt(div.querySelector(".pointValue").value);
+                if (address && !isNaN(taskTime) && !isNaN(pointValue)) {
+                    locations.push({ address, taskTime, pointValue });
+                }
+            });
+            if (locations.length < 2) {
+                alert("Enter at least two locations.");
+                return;
+            }
+            optimizeRoute(timeLimit);
+        }
+        function optimizeRoute(timeLimit) {
+            const service = new google.maps.DistanceMatrixService();
+            const addresses = locations.map(l => l.address);
+            service.getDistanceMatrix({
+                origins: addresses,
+                destinations: addresses,
+                travelMode: 'DRIVING'
+            }, (response, status) => {
+                if (status !== 'OK') {
+                    alert('Error with Distance Matrix');
+                    return;
+                }
+                const matrix = response.rows;
+                let bestRoute = [], maxPoints = 0;
+                function permute(arr, visited = [], timeSpent = 0, points = 0, route = []) {
+                    if (timeSpent > timeLimit) return;
+                    if (points > maxPoints) {
+                        maxPoints = points;
+                        bestRoute = [...route];
+                    }
+                    arr.forEach((_, i) => {
+                        if (!visited.includes(i)) {
+                            const prev = visited.length ? visited[visited.length - 1] : 0;
+                            const travelTime = matrix[prev].elements[i].duration.value / 60;
+                            permute(arr, [...visited, i], timeSpent + travelTime + locations[i].taskTime, points + locations[i].pointValue, [...route, locations[i].address]);
+                        }
+                    });
+                }
+                permute(locations);
+                displayRoute(bestRoute);
+            });
+        }
+        function displayRoute(bestRoute) {
+            const map = new google.maps.Map(document.getElementById("map"), { zoom: 10, center: { lat: 37.7749, lng: -122.4194 } });
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+            if (bestRoute.length < 2) {
+                alert("No valid route found.");
+                return;
+            }
+            const waypoints = bestRoute.slice(1, -1).map(location => ({ location, stopover: true }));
+            directionsService.route({
+                origin: bestRoute[0],
+                destination: bestRoute[bestRoute.length - 1],
+                waypoints,
+                travelMode: 'DRIVING'
+            }, (result, status) => {
+                if (status === 'OK') directionsRenderer.setDirections(result);
+                else alert('Could not display directions');
+            });
+        }
+    </script>
+</body>
+</html>

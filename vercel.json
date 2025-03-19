@@ -3,6 +3,7 @@
     { "source": "/stars", "destination": "/stars.html" },
     { "source": "/lively", "destination": "/stars.html" },
     { "source": "/dice", "destination": "/dice.html" },
+    { "source": "/route", "destination": "/route.html"},
     { "source": "/toad", "destination": "/toad.html"}
   ]
 }
